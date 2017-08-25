@@ -6,18 +6,15 @@ import java.util.StringTokenizer;
 
 public class CommonUtil {
 	private static CommonUtil _instance;
-	public String SERVER;
-	public String SERVER_SNAP40;
-	public String Local_Path;
-	public String Pay_YN;
+	public String MEMBER_ID;
+	public String MEMEBER_SELF_ID;
 
 	static {
 		_instance = new CommonUtil();
 		try {								 
-			_instance.SERVER = 	   		"http://snap40.cafe24.com/Police/";
-			_instance.SERVER_SNAP40 = 	   		"http://snap40.cafe24.com/Police/";
-			_instance.Local_Path = 	   		"/data/data/sjy.policenewproject/databases";
-			
+			_instance.MEMBER_ID = 	      "";
+			_instance.MEMEBER_SELF_ID =   "";
+
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

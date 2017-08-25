@@ -1,6 +1,5 @@
 package sky.kr.co.hichina;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -14,7 +13,7 @@ import java.util.Map;
 import co.kr.sky.AccumThread;
 import sky.kr.co.hichina.common.ActivityEx;
 
-public class MainActivity extends ActivityEx {
+public class PwFindActivity extends ActivityEx {
 
     private EditText id_edit , pw_edit;
     private AccumThread mThread;
@@ -23,7 +22,7 @@ public class MainActivity extends ActivityEx {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_pwfind);
 
 
         id_edit = (EditText)findViewById(R.id.id_edit);
@@ -40,11 +39,10 @@ public class MainActivity extends ActivityEx {
 
                 case R.id.join_btn:
                     Log.e("SKY"  , "--join_btn--");
-                    startActivity(new Intent(MainActivity.this, JoinActivity.class));
+
                     break;
                 case R.id.pw_find_btn:
                     Log.e("SKY"  , "--pw_find_btn--");
-                    startActivity(new Intent(MainActivity.this, PwFindActivity.class));
 
                     break;
                 case R.id.login_btn:
