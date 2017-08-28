@@ -1,24 +1,28 @@
 package sky.kr.co.hichina;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
-
+import android.widget.Toast;
+import android.app.AlertDialog;
 import java.util.HashMap;
 import java.util.Map;
 
 import co.kr.sky.AccumThread;
 import sky.kr.co.hichina.common.ActivityEx;
+import sky.kr.co.hichina.common.DEFINE;
 
 public class JoinActivity extends ActivityEx {
 
-    private EditText id_edit , pw_edit;
+    private EditText id_edit , pw_edit , email_edit;
     private AccumThread mThread;
     private Map<String, String> map = new HashMap<String, String>();
 
+    private String JOB = "";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,9 +31,9 @@ public class JoinActivity extends ActivityEx {
 
         id_edit = (EditText)findViewById(R.id.id_edit);
         pw_edit = (EditText)findViewById(R.id.pw_edit);
+        email_edit = (EditText)findViewById(R.id.email_edit);
 
-        findViewById(R.id.pw_find_btn).setOnClickListener(btnListener);
-        findViewById(R.id.login_btn).setOnClickListener(btnListener);
+        findViewById(R.id.job_btn).setOnClickListener(btnListener);
         findViewById(R.id.join_btn).setOnClickListener(btnListener);
 
     }
@@ -37,21 +41,38 @@ public class JoinActivity extends ActivityEx {
         public void onClick(View v) {
             switch (v.getId()) {
 
+                case R.id.job_btn:
+                    Log.e("SKY"  , "--job_btn--");
+                    final CharSequence[] items = {"학생(어학연수)", "학생(본과생)", "학생(석사/박사)" , "학부모" , "직장인" , "사업자" , "공무원"};
+
+                    AlertDialog.Builder builder = new AlertDialog.Builder(JoinActivity.this);
+                    builder.setTitle("집업을 선택하세요")
+                            .setItems(items, new DialogInterface.OnClickListener(){    // 목록 클릭시 설정
+                                public void onClick(DialogInterface dialog, int index){
+                                    JOB = (String) items[index];
+                                }
+                            });
+
+                    AlertDialog dialog = builder.create();    // 알림창 객체 생성
+                    dialog.show();    // 알림창 띄우기
+                    break;
                 case R.id.join_btn:
                     Log.e("SKY"  , "--join_btn--");
-
-                    break;
-                case R.id.pw_find_btn:
-                    Log.e("SKY"  , "--pw_find_btn--");
-
-                    break;
-                case R.id.login_btn:
-                    Log.e("SKY"  , "--login_btn--");
-                    //map.put("url", "http://sc-group.kr/collraboration/login/login.ajax");
-//                    map.put("_JSON_DATA",json);
-//                    //스레드 생성
-//                    mThread = new AccumThread(LoginActivity.this , mAfterAccum , map , 0 , 0 , null);
-//                    mThread.start();		//스레드 시작!!
+                    if(JOB.equals("")){
+                        Toast.makeText(JoinActivity.this, "직업을 선택해주세요", Toast.LENGTH_SHORT).show();
+                        return;
+                    }else if(id_edit.getText().toString().equals("") || pw_edit.getText().toString().equals("")){
+                        Toast.makeText(JoinActivity.this, "모든 항목을 입력해주세요", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                    map.put("url", DEFINE.SERVER_URL + "MEMBER_JOIN");
+                    map.put("MEMBER_ID",    id_edit.getText().toString());
+                    map.put("MEMBER_PW",    pw_edit.getText().toString());
+                    map.put("MEMBER_EMAIL", email_edit.getText().toString());
+                    map.put("MEMBER_JOB",   JOB);
+                    //스레드 생성
+                    mThread = new AccumThread(JoinActivity.this , mAfterAccum , map , 0 , 0 , null);
+                    mThread.start();		//스레드 시작!!
                     break;
             }
         }
@@ -65,6 +86,8 @@ public class JoinActivity extends ActivityEx {
                 String res = (String)msg.obj;
                 Log.e("CHECK" , "RESULT  -> " + res);
 
+                Toast.makeText(getApplicationContext() , "가입완료 되었습니다" , Toast.LENGTH_SHORT).show();
+                finish();
             }
         }
     };

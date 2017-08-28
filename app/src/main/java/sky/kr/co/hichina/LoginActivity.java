@@ -47,7 +47,6 @@ public class LoginActivity extends ActivityEx {
                 case R.id.pw_find_btn:
                     Log.e("SKY"  , "--pw_find_btn--");
                     startActivity(new Intent(LoginActivity.this, PwFindActivity.class));
-
                     break;
                 case R.id.login_btn:
                     Log.e("SKY"  , "--login_btn--");
