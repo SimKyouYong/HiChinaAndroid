@@ -7,6 +7,7 @@
     android:layout_height="match_parent"
     >
 
+
     <LinearLayout
         android:id="@+id/TopView"
         android:layout_centerInParent="true"
@@ -22,18 +23,9 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="비밀번호를 입력해주세요"
-            android:id="@+id/pw_edit"/>
+            android:hint="이메일 주소를 입력해주세요"
+            android:id="@+id/email_edit"/>
 
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="비밀번호 찾기"
-            android:textColor="#000000"
-            android:textSize="10dp"
-            android:gravity="right"
-            android:layout_gravity="right"
-            android:id="@+id/pw_find_btn"/>
     </LinearLayout>
 
     <LinearLayout
@@ -47,13 +39,8 @@
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="로그인"
-            android:id="@+id/login_btn"/>
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="회원가입"
-            android:id="@+id/join_btn"/>
+            android:text="확인"
+            android:id="@+id/find_btn"/>
 
     </LinearLayout>
 

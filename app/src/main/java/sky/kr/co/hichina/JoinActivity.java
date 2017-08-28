@@ -1,14 +1,16 @@
 package sky.kr.co.hichina;
 
+import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-import android.app.AlertDialog;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -22,6 +24,7 @@ public class JoinActivity extends ActivityEx {
     private AccumThread mThread;
     private Map<String, String> map = new HashMap<String, String>();
 
+    private Button job_btn;
     private String JOB = "";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,9 +32,15 @@ public class JoinActivity extends ActivityEx {
         setContentView(R.layout.activity_join);
 
 
+        job_btn = (Button)findViewById(R.id.job_btn);
         id_edit = (EditText)findViewById(R.id.id_edit);
         pw_edit = (EditText)findViewById(R.id.pw_edit);
         email_edit = (EditText)findViewById(R.id.email_edit);
+
+
+        id_edit.setText("snap40");
+        pw_edit.setText("rbdyd3174");
+        email_edit.setText("snap0425@gmail.com");
 
         findViewById(R.id.job_btn).setOnClickListener(btnListener);
         findViewById(R.id.join_btn).setOnClickListener(btnListener);
@@ -50,6 +59,7 @@ public class JoinActivity extends ActivityEx {
                             .setItems(items, new DialogInterface.OnClickListener(){    // 목록 클릭시 설정
                                 public void onClick(DialogInterface dialog, int index){
                                     JOB = (String) items[index];
+                                    job_btn.setText(""+JOB);
                                 }
                             });
 

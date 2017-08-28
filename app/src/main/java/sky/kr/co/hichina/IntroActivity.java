@@ -8,15 +8,12 @@ import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
-import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
-import android.support.v4.content.ContextCompat;
 import android.util.Log;
 
 public class IntroActivity extends FragmentActivity {
 	private static String[] PERMISSIONS_STORAGE = {
             Manifest.permission.READ_CONTACTS,
-            Manifest.permission.READ_PHONE_STATE,
             Manifest.permission.WRITE_EXTERNAL_STORAGE,
 
 
@@ -28,20 +25,21 @@ public class IntroActivity extends FragmentActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_intro);
 
-		int permissionCheck = ContextCompat.checkSelfPermission(this, Manifest.permission.READ_CONTACTS);
-		if(permissionCheck== PackageManager.PERMISSION_DENIED){
-			// 권한 없음
-			Log.e("SKY", "권한 없음");
-			ActivityCompat.requestPermissions(this,
-					PERMISSIONS_STORAGE,
-					1);
-		}else{
-			// 권한 있음
-			Log.e("SKY", "권한 있음");
-			ActivityCompat.requestPermissions(this,
-					PERMISSIONS_STORAGE,
-					1);
-		}
+//		int permissionCheck = ContextCompat.checkSelfPermission(this, Manifest.permission.READ_CONTACTS);
+//		if(permissionCheck== PackageManager.PERMISSION_DENIED){
+//			// 권한 없음
+//			Log.e("SKY", "권한 없음");
+//			ActivityCompat.requestPermissions(this,
+//					PERMISSIONS_STORAGE,
+//					1);
+//		}else{
+//			// 권한 있음
+//			Log.e("SKY", "권한 있음");
+//			ActivityCompat.requestPermissions(this,
+//					PERMISSIONS_STORAGE,
+//					1);
+//		}
+		MainMove();
 	}
 	private void MainMove(){
 		Handler handler = new Handler(Looper.getMainLooper());
@@ -58,6 +56,7 @@ public class IntroActivity extends FragmentActivity {
 	public void onRequestPermissionsResult(int requestCode,String permissions[], int[] grantResults) {
 		switch (requestCode) {
 			case 1: {
+				Log.e("SKY" , "성공 : " + grantResults.length);
 
                 // If request is cancelled, the result arrays are empty.
                 if (grantResults.length > 0

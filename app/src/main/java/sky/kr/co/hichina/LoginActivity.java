@@ -14,6 +14,7 @@ import java.util.Map;
 
 import co.kr.sky.AccumThread;
 import sky.kr.co.hichina.common.ActivityEx;
+import sky.kr.co.hichina.common.Check_Preferences;
 import sky.kr.co.hichina.common.DEFINE;
 
 public class LoginActivity extends ActivityEx {
@@ -65,6 +66,7 @@ public class LoginActivity extends ActivityEx {
                     mThread = new AccumThread(LoginActivity.this , mAfterAccum , map , 0 , 0 , null);
                     mThread.start();		//스레드 시작!!
                     break;
+
             }
         }
     };
@@ -76,7 +78,21 @@ public class LoginActivity extends ActivityEx {
             if (msg.arg1  == 0 ) {
                 String res = (String)msg.obj;
                 Log.e("CHECK" , "RESULT  -> " + res);
-                startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                String val[] = res.split(",");
+                if (val[0].equals("true")){
+                    //로그인 성공
+
+                    Check_Preferences.setAppPreferences(LoginActivity.this , "KEY_INDEX"    , val[1]);
+                    Check_Preferences.setAppPreferences(LoginActivity.this , "MEMBER_ID"  , val[2]);
+                    Check_Preferences.setAppPreferences(LoginActivity.this , "MEMBER_PW"    , val[3]);
+                    Check_Preferences.setAppPreferences(LoginActivity.this , "MEMBER_EMAIL" , val[4]);
+                    Check_Preferences.setAppPreferences(LoginActivity.this , "MEMBER_JOB"   , val[5]);
+                    startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                }else{
+                    Toast.makeText(getApplicationContext() , "아이디 혹은 비밀번호를 입력해주세요." , Toast.LENGTH_SHORT).show();
+
+                }
+
 
             }
         }
