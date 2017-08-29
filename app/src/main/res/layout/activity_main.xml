@@ -7,6 +7,83 @@
     android:layout_height="match_parent"
     >
 
+    <RelativeLayout
+        android:id="@+id/topview"
+        android:layout_width="match_parent"
+        android:layout_alignParentTop="true"
+        android:background="#ff0000"
+        android:layout_height="wrap_content">
 
+        <TextView
+            android:layout_margin="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:textSize="20dp"
+            android:text="China"/>
+
+        <Button
+            android:id="@+id/top_right_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_below="@+id/topview"
+        android:gravity="center"
+        android:layout_marginRight="40dp"
+        android:layout_marginLeft="40dp"
+        android:orientation="vertical"
+        android:layout_height="match_parent">
+
+        <Button
+            android:id="@+id/location"
+            android:layout_width="match_parent"
+            android:background="#00000000"
+            android:visibility="gone"
+            android:layout_height="wrap_content"
+            android:text="선택"/>
+
+        <Button
+            android:id="@+id/main_btn1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#00000000"
+            android:layout_marginTop="40dp"
+            android:text="중국생활"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_marginTop="50dp"
+            android:layout_height="wrap_content">
+
+            <Button
+                android:id="@+id/main_btn2"
+                android:layout_width="160dp"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentLeft="true"
+                android:layout_height="100dp"
+                android:text="사고팔기"/>
+            <Button
+                android:id="@+id/main_btn3"
+                android:layout_alignParentLeft="true"
+                android:layout_below="@+id/main_btn2"
+                android:layout_width="160dp"
+                android:layout_height="100dp"
+                android:text="개인교습"/>
+            <Button
+                android:id="@+id/main_btn4"
+                android:layout_alignParentRight="true"
+                android:layout_toRightOf="@+id/main_btn2"
+                android:layout_width="160dp"
+                android:layout_height="200dp"
+                android:text="학교생활정보"/>
+
+
+        </RelativeLayout>
+    </LinearLayout>
 
 </RelativeLayout>

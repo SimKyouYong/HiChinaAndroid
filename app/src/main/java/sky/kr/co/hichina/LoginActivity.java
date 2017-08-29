@@ -32,6 +32,8 @@ public class LoginActivity extends ActivityEx {
         id_edit = (EditText)findViewById(R.id.id_edit);
         pw_edit = (EditText)findViewById(R.id.pw_edit);
 
+        id_edit.setText("snap40");
+        pw_edit.setText("rbdyd3174");
         findViewById(R.id.pw_find_btn).setOnClickListener(btnListener);
         findViewById(R.id.login_btn).setOnClickListener(btnListener);
         findViewById(R.id.join_btn).setOnClickListener(btnListener);
@@ -59,7 +61,7 @@ public class LoginActivity extends ActivityEx {
                         return;
                     }
 
-                    map.put("url", DEFINE.SERVER_URL + "");
+                    map.put("url", DEFINE.SERVER_URL + "MEMBER_LOGIN.php");
                     map.put("MEMBER_ID",id_edit.getText().toString());
                     map.put("MEMBER_PW",pw_edit.getText().toString());
                     //스레드 생성

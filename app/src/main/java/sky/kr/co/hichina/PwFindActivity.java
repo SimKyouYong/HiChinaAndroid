@@ -30,6 +30,8 @@ public class PwFindActivity extends ActivityEx {
         id_edit = (EditText)findViewById(R.id.id_edit);
         email_edit = (EditText)findViewById(R.id.email_edit);
 
+        id_edit.setText("snap40");
+        email_edit.setText("snap0425@gmail.com");
         findViewById(R.id.find_btn).setOnClickListener(btnListener);
 
     }
@@ -43,7 +45,7 @@ public class PwFindActivity extends ActivityEx {
                         Toast.makeText(PwFindActivity.this, "모든 항목을 입력해주세요", Toast.LENGTH_SHORT).show();
                         return;
                     }
-                    map.put("url", DEFINE.SERVER_URL + "MEMBER_FIND");
+                    map.put("url", DEFINE.SERVER_URL + "MEMBER_FIND.php");
                     map.put("MEMBER_ID",    id_edit.getText().toString());
                     map.put("MEMBER_EMAIL", email_edit.getText().toString());
 
@@ -62,7 +64,7 @@ public class PwFindActivity extends ActivityEx {
             if (msg.arg1  == 0 ) {
                 String res = (String)msg.obj;
                 Log.e("CHECK" , "RESULT  -> " + res);
-                if (res.trim().equals("true")){
+                if (res.trim().equals("1")){
                     Toast.makeText(PwFindActivity.this, "이메일로 비밀번호를 전송하였습니다", Toast.LENGTH_SHORT).show();
                     finish();
                 }else{
