@@ -75,7 +75,7 @@ public class JoinActivity extends ActivityEx {
                         Toast.makeText(JoinActivity.this, "모든 항목을 입력해주세요", Toast.LENGTH_SHORT).show();
                         return;
                     }
-                    map.put("url", DEFINE.SERVER_URL + "MEMBER_JOIN");
+                    map.put("url", DEFINE.SERVER_URL + "MEMBER_JOIN.php");
                     map.put("MEMBER_ID",    id_edit.getText().toString());
                     map.put("MEMBER_PW",    pw_edit.getText().toString());
                     map.put("MEMBER_EMAIL", email_edit.getText().toString());
