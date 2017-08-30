@@ -1,5 +1,6 @@
 package sky.kr.co.hichina;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -56,6 +57,8 @@ public class SchoolInfoActivity extends ActivityEx {
                     break;
                 case R.id.top_right_btn:
                     Log.e("SKY"  , "--top_right_btn--");
+                    Intent intent = new Intent(SchoolInfoActivity.this, WriteActivity.class);
+                    startActivity(intent);
                     break;
                 case R.id.tab1_btn:
                     Log.e("SKY"  , "--tab1_btn--");
