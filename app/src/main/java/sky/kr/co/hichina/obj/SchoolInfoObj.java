@@ -7,6 +7,7 @@ public class SchoolInfoObj implements Parcelable{
 	public static Creator<SchoolInfoObj> getCreator() {
 		return CREATOR;
 	}	
+
 	String KEY_INDEX;
 	String TITLE;
 	String BODY;
@@ -26,7 +27,7 @@ public class SchoolInfoObj implements Parcelable{
     String SELF_ID_KEY_INDEX;
     String CATEGORY_1;
 
-    public SchoolInfoObj(String KEY_INDEX, String TITLE, String BODY, String SELF_ID, String GOOD_EA, String COMMENT_EA, String DATE, String IMG_1, String IMG_2, String IMG_3, String IMG_4, String IMG_5, String IMG_6, String IMG_7, String IMG_8, String IMG_9, String SELF_ID_KEY_INDEX) {
+    public SchoolInfoObj(String KEY_INDEX, String TITLE, String BODY, String SELF_ID, String GOOD_EA, String COMMENT_EA, String DATE, String IMG_1, String IMG_2, String IMG_3, String IMG_4, String IMG_5, String IMG_6, String IMG_7, String IMG_8, String IMG_9, String SELF_ID_KEY_INDEX , String CATEGORY_1) {
         this.KEY_INDEX = KEY_INDEX;
         this.TITLE = TITLE;
         this.BODY = BODY;
@@ -44,6 +45,7 @@ public class SchoolInfoObj implements Parcelable{
         this.IMG_8 = IMG_8;
         this.IMG_9 = IMG_9;
         this.SELF_ID_KEY_INDEX = SELF_ID_KEY_INDEX;
+        this.CATEGORY_1 = CATEGORY_1;
     }
 
     public String getKEY_INDEX() {

@@ -2,7 +2,6 @@ package sky.kr.co.hichina.adapter;
 
 import android.app.Activity;
 import android.content.Context;
-import android.graphics.Typeface;
 import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,7 +21,6 @@ public class SchoolInfo_Adapter extends BaseAdapter {
 	private Activity activity;
 	private static LayoutInflater inflater=null;
 	ArrayList<SchoolInfoObj> items;
-	private Typeface ttf;
 	private Handler mAfterAccum;
 
 	public SchoolInfo_Adapter(Activity a, ArrayList<SchoolInfoObj> m_board, Handler mAfterAccum_) {
@@ -31,7 +29,6 @@ public class SchoolInfo_Adapter extends BaseAdapter {
 		inflater = (LayoutInflater) activity
 				.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		items = m_board;
-		ttf = Typeface.createFromAsset(activity.getAssets(), "HANYGO230.TTF");
 		mAfterAccum = mAfterAccum_;
 
 	}
@@ -68,15 +65,15 @@ public class SchoolInfo_Adapter extends BaseAdapter {
 		}else {
 			vh = (ViewHolder) convertView.getTag();
 		}
-		vh.t_date.setTypeface(ttf);
-		vh.t_total_count.setTypeface(ttf);
-		vh.t_body.setTypeface(ttf);
-		vh.t_send_count.setTypeface(ttf);
-		
-		vh.t_date.setText(board.getDate());
-		vh.t_total_count.setText(board.getPhone());
-		vh.t_body.setText(board.getBody());
-		vh.t_send_count.setText(board.getPhone());
+//		vh.t_date.setTypeface(ttf);
+//		vh.t_total_count.setTypeface(ttf);
+//		vh.t_body.setTypeface(ttf);
+//		vh.t_send_count.setTypeface(ttf);
+//
+//		vh.t_date.setText(board.getDate());
+//		vh.t_total_count.setText(board.getPhone());
+//		vh.t_body.setText(board.getBody());
+//		vh.t_send_count.setText(board.getPhone());
 		
 //		vh.del.setOnClickListener(new View.OnClickListener() {
 //			@Override
