@@ -70,7 +70,7 @@ public class SchoolInfo_Adapter extends BaseAdapter {
 		}else {
 			vh = (ViewHolder) convertView.getTag();
 		}
-        vh.name_tv.setText(board.getSELF_ID());
+        vh.name_tv.setText(board.getSELF_ID() + "(" +board.getCATEGORY_1() + ")");
         vh.body_tv.setText(board.getBODY());
 		vh.date_tv.setText(board.getDATE());
 		vh.comment_tv.setText("댓글:" + board.getCOMMENT_EA());

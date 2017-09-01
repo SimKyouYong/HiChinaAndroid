@@ -41,6 +41,7 @@ public class SchoolInfoActivity extends ActivityEx {
                 "IMG_9","SELF_ID_KEY_INDEX",
                 "CATEGORY_1"};
         map.put("url", DEFINE.SERVER_URL + "BOARD_SELECT.php");
+        map.put("TAG", ""+tab_position);
         mThread = new AccumThread(this, mAfterAccum , map , 1 , 0 , val);
         mThread.start();		//스레드 시작!!
         super.onResume();
@@ -50,7 +51,6 @@ public class SchoolInfoActivity extends ActivityEx {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_schoolinfo);
         list_number = (ListView)findViewById(R.id.list_number);
-
 
         findViewById(R.id.top_left_btn).setOnClickListener(btnListener);
         findViewById(R.id.top_right_btn).setOnClickListener(btnListener);

@@ -274,7 +274,9 @@ public class WriteActivity extends ActivityEx {
 
                     for (int i = 0; i < filename.size(); i++) {
                         String[] file_name = filename.get(i).split("/");
-                        map.put("IMG_" + (i+1),MEMBER_ID + "_"+ dTime +"_"+file_name[file_name.length-1]);		//type 에 따른.. 값으로..edit
+                        if (file_name[file_name.length-1].length() > 3){
+                            map.put("IMG_" + (i+1),MEMBER_ID + "_"+ dTime +"_"+file_name[file_name.length-1]);		//type 에 따른.. 값으로..edit
+                        }
                     }
 
                     mThread = new AccumThread(WriteActivity.this , mAfterAccum , map , 0 , 0 , null);
@@ -332,17 +334,18 @@ public class WriteActivity extends ActivityEx {
                 conn.setRequestProperty("Content-Type", "multipart/form-data;boundary=" + boundary);
                 conn.setRequestProperty("uploaded_file", sourceFileUri);
 
-
-
-
-
-
                 dos = new DataOutputStream(conn.getOutputStream());
 
                 String MEMBER_ID = Check_Preferences.getAppPreferences(WriteActivity.this , "MEMBER_ID");
                 dos.writeBytes(twoHyphens + boundary + lineEnd);
-                dos.writeBytes("Content-Disposition: form-data; name=\"uploaded_file\";" +
-                        "filename=\""+ MEMBER_ID + "_" + dTime+"_"+file_name[file_name.length-1]+ "" + "\"" + lineEnd);
+                if (file_name[file_name.length-1].length() > 3){
+                    dos.writeBytes("Content-Disposition: form-data; name=\"uploaded_file\";" +
+                            "filename=\""+ MEMBER_ID + "_" + dTime+"_"+file_name[file_name.length-1]+ "" + "\"" + lineEnd);
+                }else{
+                    dos.writeBytes("Content-Disposition: form-data; name=\"uploaded_file\";" +
+                            "filename=\""+ file_name[file_name.length-1]+ "" + "\"" + lineEnd);
+                }
+
 
                 dos.writeBytes(lineEnd);
 

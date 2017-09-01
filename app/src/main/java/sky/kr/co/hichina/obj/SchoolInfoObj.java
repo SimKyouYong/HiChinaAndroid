@@ -183,6 +183,12 @@ public class SchoolInfoObj implements Parcelable{
     public void setSELF_ID_KEY_INDEX(String SELF_ID_KEY_INDEX) {
         this.SELF_ID_KEY_INDEX = SELF_ID_KEY_INDEX;
     }
+    public void setCATEGORY_1(String CATEGORY_1) {
+        this.CATEGORY_1 = CATEGORY_1;
+    }
+    public String getCATEGORY_1() {
+        return CATEGORY_1;
+    }
 
     public SchoolInfoObj(Parcel in) {
 		readFromParcel(in);
