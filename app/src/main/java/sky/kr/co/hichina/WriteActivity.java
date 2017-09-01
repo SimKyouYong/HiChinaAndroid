@@ -54,9 +54,10 @@ public class WriteActivity extends ActivityEx {
     Boolean img_val[] = {false , false , false , false , false , false , false , false , false , false};
     Boolean img_ch_val[] = {false , false , false , false , false , false , false , false , false , false};
     ArrayList<String> filename = new ArrayList<String>();
-
+    private String dTime = "";
     @Override
     public void onResume() {
+
         if (pic_flag) {
             //멀티 사진 가져오기
             pic_flag = false;
@@ -86,6 +87,11 @@ public class WriteActivity extends ActivityEx {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_write);
+
+
+        SimpleDateFormat formatter = new SimpleDateFormat ( "yyyy-MM-dd HH:mm:ss", Locale.KOREA );
+        Date currentTime = new Date ( );
+        dTime = formatter.format ( currentTime );
 
         title_edit = (EditText)findViewById(R.id.title_edit);
         body_edit = (EditText)findViewById(R.id.body_edit);
@@ -191,9 +197,6 @@ public class WriteActivity extends ActivityEx {
         if (fullsize == 0) {
             //글만 전송
             //파라미터 전송
-            SimpleDateFormat formatter = new SimpleDateFormat ( "yyyy-MM-dd HH:mm:ss", Locale.KOREA );
-            Date currentTime = new Date ( );
-            String dTime = formatter.format ( currentTime );
 
 
             map.put("url", DEFINE.SERVER_URL + "BOARD_WRITE.php");
@@ -257,9 +260,6 @@ public class WriteActivity extends ActivityEx {
             send_position++;
             if (send_position == 10) {
                 if (_a) {
-                    SimpleDateFormat formatter = new SimpleDateFormat ( "yyyy-MM-dd HH:mm:ss", Locale.KOREA );
-                    Date currentTime = new Date ( );
-                    String dTime = formatter.format ( currentTime );
 
                     Log.e("SKY" , "filename.size() :: " + filename.size());
                     Log.e("SKY" , "i :: " + (i+1));
@@ -270,10 +270,11 @@ public class WriteActivity extends ActivityEx {
                     map.put("DATE", dTime);
                     map.put("SELF_ID_KEY_INDEX",Check_Preferences.getAppPreferences(getApplicationContext() ,"KEY_INDEX"));
                     map.put("CATEGORY_1",category_btn.getText().toString());
+                    String MEMBER_ID = Check_Preferences.getAppPreferences(WriteActivity.this , "MEMBER_ID");
 
                     for (int i = 0; i < filename.size(); i++) {
                         String[] file_name = filename.get(i).split("/");
-                        map.put("IMG_" + (i+1),file_name[file_name.length-1]);		//type 에 따른.. 값으로..edit
+                        map.put("IMG_" + (i+1),MEMBER_ID + "_"+ dTime +"_"+file_name[file_name.length-1]);		//type 에 따른.. 값으로..edit
                     }
 
                     mThread = new AccumThread(WriteActivity.this , mAfterAccum , map , 0 , 0 , null);
@@ -331,11 +332,17 @@ public class WriteActivity extends ActivityEx {
                 conn.setRequestProperty("Content-Type", "multipart/form-data;boundary=" + boundary);
                 conn.setRequestProperty("uploaded_file", sourceFileUri);
 
+
+
+
+
+
                 dos = new DataOutputStream(conn.getOutputStream());
 
+                String MEMBER_ID = Check_Preferences.getAppPreferences(WriteActivity.this , "MEMBER_ID");
                 dos.writeBytes(twoHyphens + boundary + lineEnd);
                 dos.writeBytes("Content-Disposition: form-data; name=\"uploaded_file\";" +
-                        "filename=\""+ file_name[file_name.length-1]+ "" + "\"" + lineEnd);
+                        "filename=\""+ MEMBER_ID + "_" + dTime+"_"+file_name[file_name.length-1]+ "" + "\"" + lineEnd);
 
                 dos.writeBytes(lineEnd);
 
