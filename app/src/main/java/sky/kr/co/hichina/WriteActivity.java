@@ -10,13 +10,13 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
 import java.io.DataOutputStream;
 import java.io.File;
@@ -32,11 +32,12 @@ import java.util.Locale;
 import java.util.Map;
 
 import co.kr.sky.AccumThread;
+import sky.kr.co.hichina.common.ActivityEx;
 import sky.kr.co.hichina.common.Check_Preferences;
 import sky.kr.co.hichina.common.DEFINE;
 import sky.kr.co.hichina.obj.ThumbImageInfo;
 
-public class WriteActivity extends FragmentActivity {
+public class WriteActivity extends ActivityEx {
     public static Boolean pic_flag = false;
     public static ArrayList<ThumbImageInfo> mThumbImageInfoList_copy = new ArrayList<ThumbImageInfo>();;
     int serverResponseCode = 0;
@@ -90,7 +91,8 @@ public class WriteActivity extends FragmentActivity {
         body_edit = (EditText)findViewById(R.id.body_edit);
         category_btn = (Button)findViewById(R.id.category_btn);
 
-        title_edit.setText("title 111");
+//        title_edit.setText("title 111");
+        title_edit.setVisibility(View.GONE);
         body_edit.setText("title 111222");
 
         findViewById(R.id.top_left_btn).setOnClickListener(btnListener);
@@ -141,10 +143,11 @@ public class WriteActivity extends FragmentActivity {
                     break;
                 case R.id.category_btn:
                     Log.e("SKY"  , "--category_btn--");
-                    final CharSequence[] items = {"학생(어학연수)", "학생(본과생)", "학생(석사/박사)" , "학부모" , "직장인" , "사업자" , "공무원"};
+
+                    final CharSequence[] items = {"기타", "증명서발급", "학생사무실" , "학부모" , "수업/선생님" , "건의사항" , "실용중국어"};
 
                     AlertDialog.Builder builder = new AlertDialog.Builder(WriteActivity.this);
-                    builder.setTitle("집업을 선택하세요")
+                    builder.setTitle("선택하세요")
                             .setItems(items, new DialogInterface.OnClickListener(){    // 목록 클릭시 설정
                                 public void onClick(DialogInterface dialog, int index){
                                     CATEGORY = (String) items[index];
@@ -157,6 +160,14 @@ public class WriteActivity extends FragmentActivity {
                     break;
                 case R.id.send_btn:
                     Log.e("SKY"  , "--send_btn--");
+                    if (category_btn.getText().toString().equals("-카테고리 선택-")) {
+                        Toast.makeText(getApplicationContext() , "카테고리를 선택해주세요" , Toast.LENGTH_SHORT).show();
+                        return;
+                    }else if(body_edit.getText().toString().equals("")){
+                        Toast.makeText(getApplicationContext() , "내용을 입력해주세요" , Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                    customProgressPop();
                     newSend();
                     break;
                 case R.id.potho_btn:
@@ -186,7 +197,7 @@ public class WriteActivity extends FragmentActivity {
 
 
             map.put("url", DEFINE.SERVER_URL + "BOARD_WRITE.php");
-            map.put("TITLE",title_edit.getText().toString());
+            //map.put("TITLE",title_edit.getText().toString());
             map.put("BODY",body_edit.getText().toString());
             map.put("SELF_ID", Check_Preferences.getAppPreferences(getApplicationContext() ,"MEMBER_ID"));
             map.put("DATE", dTime);
@@ -212,10 +223,12 @@ public class WriteActivity extends FragmentActivity {
         @Override
         public void handleMessage(Message msg)
         {
+            customProgressClose();
             if (msg.arg1  == 0 ) {
                 String res = (String)msg.obj;
                 Log.e("CHECK" , "RESULT  -> " + res);
 
+                finish();
 
             }
         }
@@ -251,7 +264,7 @@ public class WriteActivity extends FragmentActivity {
                     Log.e("SKY" , "filename.size() :: " + filename.size());
                     Log.e("SKY" , "i :: " + (i+1));
                     map.put("url", DEFINE.SERVER_URL + "BOARD_WRITE.php");
-                    map.put("TITLE",title_edit.getText().toString());
+                    //map.put("TITLE",title_edit.getText().toString());
                     map.put("BODY",body_edit.getText().toString());
                     map.put("SELF_ID", Check_Preferences.getAppPreferences(getApplicationContext() ,"MEMBER_ID"));
                     map.put("DATE", dTime);

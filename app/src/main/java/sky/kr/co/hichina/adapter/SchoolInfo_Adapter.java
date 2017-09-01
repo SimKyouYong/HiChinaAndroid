@@ -7,16 +7,20 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.Button;
 import android.widget.TextView;
+
+import com.android.volley.toolbox.NetworkImageView;
 
 import java.util.ArrayList;
 
+import sky.kr.co.hichina.R;
 import sky.kr.co.hichina.common.CommonUtil;
+import sky.kr.co.hichina.common.DEFINE;
+import sky.kr.co.hichina.common.H5ImageLoader;
 import sky.kr.co.hichina.obj.SchoolInfoObj;
 
 public class SchoolInfo_Adapter extends BaseAdapter {
-	CommonUtil dataSet = CommonUtil.getInstance();
+    CommonUtil dataSet = CommonUtil.getInstance();
 
 	private Activity activity;
 	private static LayoutInflater inflater=null;
@@ -46,46 +50,34 @@ public class SchoolInfo_Adapter extends BaseAdapter {
 	}
 
 	static class ViewHolder {
-		TextView t_date , t_body ,t_total_count,t_send_count;
-		Button del;
+		TextView body_tv , date_tv ,comment_tv,good_tv , name_tv;
+        NetworkImageView img1;
 
 	}
 	public View getView(final int position, View convertView, ViewGroup parent) {
 		final SchoolInfoObj board = items.get(position);
 		ViewHolder vh = new ViewHolder();
 		if (convertView == null) {
-//			convertView = inflater.inflate(R.layout.activity_lms_history_item,null);
-//			vh.t_date = (TextView) convertView.findViewById(R.id.t_date);
-//			vh.t_total_count = (TextView) convertView.findViewById(R.id.t_total_count);
-//			vh.t_body = (TextView) convertView.findViewById(R.id.t_body);
-//			vh.t_send_count = (TextView) convertView.findViewById(R.id.t_send_count);
-//			vh.del = (Button) convertView.findViewById(R.id.del);
+			convertView = inflater.inflate(R.layout.activity_schoolinfo_item,null);
+            vh.name_tv = (TextView) convertView.findViewById(R.id.name_tv);
+            vh.body_tv = (TextView) convertView.findViewById(R.id.body_tv);
+			vh.date_tv = (TextView) convertView.findViewById(R.id.date_tv);
+			vh.comment_tv = (TextView) convertView.findViewById(R.id.comment_tv);
+			vh.good_tv = (TextView) convertView.findViewById(R.id.good_tv);
+            vh.img1 = (NetworkImageView) convertView.findViewById(R.id.img1);
 
 			convertView.setTag(vh);
 		}else {
 			vh = (ViewHolder) convertView.getTag();
 		}
-//		vh.t_date.setTypeface(ttf);
-//		vh.t_total_count.setTypeface(ttf);
-//		vh.t_body.setTypeface(ttf);
-//		vh.t_send_count.setTypeface(ttf);
-//
-//		vh.t_date.setText(board.getDate());
-//		vh.t_total_count.setText(board.getPhone());
-//		vh.t_body.setText(board.getBody());
-//		vh.t_send_count.setText(board.getPhone());
-		
-//		vh.del.setOnClickListener(new View.OnClickListener() {
-//			@Override
-//			public void onClick(View v) {
-//				Log.e("SKY", "KEY :: " + board.getKey_index());
-//				Message msg2 = mAfterAccum.obtainMessage();
-//				msg2.arg1 = 9001;
-//				msg2.arg2 = Integer.parseInt(board.getKey_index());
-//				mAfterAccum.sendMessage(msg2);
-//			}
-//		});
-		return convertView;
+        vh.name_tv.setText(board.getSELF_ID());
+        vh.body_tv.setText(board.getBODY());
+		vh.date_tv.setText(board.getDATE());
+		vh.comment_tv.setText("댓글:" + board.getCOMMENT_EA());
+		vh.good_tv.setText("좋아요:" + board.getGOOD_EA());
+        H5ImageLoader.getInstance(activity).set(DEFINE.SERVER_IMG_URL + board.getIMG_1(), vh.img1);
+
+        return convertView;
 	}
 
 }

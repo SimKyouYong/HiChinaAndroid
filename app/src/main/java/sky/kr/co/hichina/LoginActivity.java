@@ -60,7 +60,7 @@ public class LoginActivity extends ActivityEx {
                         Toast.makeText(getApplicationContext() , "비밀번호를 입력해주세요." , Toast.LENGTH_SHORT).show();
                         return;
                     }
-
+                    customProgressPop();
                     map.put("url", DEFINE.SERVER_URL + "MEMBER_LOGIN.php");
                     map.put("MEMBER_ID",id_edit.getText().toString());
                     map.put("MEMBER_PW",pw_edit.getText().toString());
@@ -77,6 +77,7 @@ public class LoginActivity extends ActivityEx {
         @Override
         public void handleMessage(Message msg)
         {
+            customProgressClose();
             if (msg.arg1  == 0 ) {
                 String res = (String)msg.obj;
                 Log.e("CHECK" , "RESULT  -> " + res);

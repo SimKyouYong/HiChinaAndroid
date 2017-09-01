@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -42,15 +43,19 @@ public class MainActivity extends ActivityEx {
 
                 case R.id.top_right_btn:
                     Log.e("SKY"  , "--top_right_btn--");
+                    Toast.makeText(MainActivity.this, "준비중..", Toast.LENGTH_SHORT).show();
                     break;
                 case R.id.main_btn1:        //중국생활
                     Log.e("SKY"  , "--main_btn1--");
+                    Toast.makeText(MainActivity.this, "준비중..", Toast.LENGTH_SHORT).show();
                     break;
                 case R.id.main_btn2:        //사고팔기
                     Log.e("SKY"  , "--main_btn2--");
+                    Toast.makeText(MainActivity.this, "준비중..", Toast.LENGTH_SHORT).show();
                     break;
                 case R.id.main_btn3:        //개인교습
                     Log.e("SKY"  , "--main_btn3--");
+                    Toast.makeText(MainActivity.this, "준비중..", Toast.LENGTH_SHORT).show();
                     break;
                 case R.id.main_btn4:        //학교생활정보
                     Log.e("SKY"  , "--main_btn4--");

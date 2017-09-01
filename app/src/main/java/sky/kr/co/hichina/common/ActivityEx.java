@@ -2,6 +2,7 @@ package sky.kr.co.hichina.common;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.Bitmap;
@@ -27,7 +28,7 @@ import java.util.Locale;
 
 public class ActivityEx extends Activity{
 	private static Typeface mTypeface = null;
-
+    protected ProgressDialog  customDialog = null;
 	@Override
 	public void setContentView(int layoutResID) {
 		super.setContentView(layoutResID);
@@ -167,4 +168,24 @@ public class ActivityEx extends Activity{
          }
          return nowAddress;
      }
+    public void customProgressPop(){
+        try{
+            if (customDialog==null){
+                customDialog = new ProgressDialog( this , ProgressDialog.THEME_DEVICE_DEFAULT_LIGHT);
+                customDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+                customDialog.setMessage("로딩중 입니다.");
+                customDialog.show();
+            }
+        }catch(Exception ex){}
+    }
+    public void customProgressClose(){
+        if (customDialog!=null && customDialog.isShowing()){
+            try{
+                customDialog.cancel();
+                customDialog.dismiss();
+                customDialog = null;
+            }catch(Exception e)
+            {}
+        }
+    }
 }

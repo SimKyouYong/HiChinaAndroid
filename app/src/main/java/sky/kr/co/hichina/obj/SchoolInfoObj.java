@@ -9,7 +9,7 @@ public class SchoolInfoObj implements Parcelable{
 	}	
 
 	String KEY_INDEX;
-	String TITLE;
+	String PARENT_KEYINDEX;
 	String BODY;
     String SELF_ID;
     String GOOD_EA;
@@ -27,9 +27,9 @@ public class SchoolInfoObj implements Parcelable{
     String SELF_ID_KEY_INDEX;
     String CATEGORY_1;
 
-    public SchoolInfoObj(String KEY_INDEX, String TITLE, String BODY, String SELF_ID, String GOOD_EA, String COMMENT_EA, String DATE, String IMG_1, String IMG_2, String IMG_3, String IMG_4, String IMG_5, String IMG_6, String IMG_7, String IMG_8, String IMG_9, String SELF_ID_KEY_INDEX , String CATEGORY_1) {
+    public SchoolInfoObj(String KEY_INDEX, String PARENT_KEYINDEX, String BODY, String SELF_ID, String GOOD_EA, String COMMENT_EA, String DATE, String IMG_1, String IMG_2, String IMG_3, String IMG_4, String IMG_5, String IMG_6, String IMG_7, String IMG_8, String IMG_9, String SELF_ID_KEY_INDEX , String CATEGORY_1) {
         this.KEY_INDEX = KEY_INDEX;
-        this.TITLE = TITLE;
+        this.PARENT_KEYINDEX = PARENT_KEYINDEX;
         this.BODY = BODY;
         this.SELF_ID = SELF_ID;
         this.GOOD_EA = GOOD_EA;
@@ -57,11 +57,11 @@ public class SchoolInfoObj implements Parcelable{
     }
 
     public String getTITLE() {
-        return TITLE;
+        return PARENT_KEYINDEX;
     }
 
-    public void setTITLE(String TITLE) {
-        this.TITLE = TITLE;
+    public void setPARENT_KEYINDEX(String PARENT_KEYINDEX) {
+        this.PARENT_KEYINDEX = PARENT_KEYINDEX;
     }
 
     public String getBODY() {
@@ -192,7 +192,7 @@ public class SchoolInfoObj implements Parcelable{
 
 
 		dest.writeString(KEY_INDEX);
-		dest.writeString(TITLE);
+		dest.writeString(PARENT_KEYINDEX);
 		dest.writeString(BODY);
         dest.writeString(SELF_ID);
         dest.writeString(GOOD_EA);
@@ -214,7 +214,7 @@ public class SchoolInfoObj implements Parcelable{
 	private void readFromParcel(Parcel in){
 
         KEY_INDEX = in.readString();
-        TITLE = in.readString();
+        PARENT_KEYINDEX = in.readString();
         BODY = in.readString();
         SELF_ID = in.readString();
         GOOD_EA = in.readString();

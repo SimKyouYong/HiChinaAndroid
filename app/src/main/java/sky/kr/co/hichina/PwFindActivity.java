@@ -45,6 +45,7 @@ public class PwFindActivity extends ActivityEx {
                         Toast.makeText(PwFindActivity.this, "모든 항목을 입력해주세요", Toast.LENGTH_SHORT).show();
                         return;
                     }
+                    customProgressPop();
                     map.put("url", DEFINE.SERVER_URL + "MEMBER_FIND.php");
                     map.put("MEMBER_ID",    id_edit.getText().toString());
                     map.put("MEMBER_EMAIL", email_edit.getText().toString());
@@ -61,6 +62,7 @@ public class PwFindActivity extends ActivityEx {
         @Override
         public void handleMessage(Message msg)
         {
+            customProgressClose();
             if (msg.arg1  == 0 ) {
                 String res = (String)msg.obj;
                 Log.e("CHECK" , "RESULT  -> " + res);

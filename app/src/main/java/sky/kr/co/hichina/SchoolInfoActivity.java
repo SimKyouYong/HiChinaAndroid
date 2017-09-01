@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -29,19 +30,27 @@ public class SchoolInfoActivity extends ActivityEx {
     private SchoolInfo_Adapter m_Adapter;
     private ArrayList<SchoolInfoObj> arr;
     private String [][] Object_Array;
-
+    private int tab_position = 0;
+    @Override
+    public void onResume() {
+        customProgressPop();
+        arr = new ArrayList<SchoolInfoObj>();
+        String val [] = {"KEY_INDEX","PARENT_KEYINDEX", "BODY", "SELF_ID", "GOOD_EA",
+                "COMMENT_EA" ,"DATE", "IMG_1" , "IMG_2", "IMG_3",
+                "IMG_4","IMG_5","IMG_6","IMG_7","IMG_8",
+                "IMG_9","SELF_ID_KEY_INDEX",
+                "CATEGORY_1"};
+        map.put("url", DEFINE.SERVER_URL + "BOARD_SELECT.php");
+        mThread = new AccumThread(this, mAfterAccum , map , 1 , 0 , val);
+        mThread.start();		//스레드 시작!!
+        super.onResume();
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_schoolinfo);
         list_number = (ListView)findViewById(R.id.list_number);
 
-//
-//        id_edit = (EditText)findViewById(R.id.id_edit);
-//        email_edit = (EditText)findViewById(R.id.email_edit);
-//
-//        id_edit.setText("snap40");
-//        email_edit.setText("snap0425@gmail.com");
 
         findViewById(R.id.top_left_btn).setOnClickListener(btnListener);
         findViewById(R.id.top_right_btn).setOnClickListener(btnListener);
@@ -51,19 +60,6 @@ public class SchoolInfoActivity extends ActivityEx {
         findViewById(R.id.tab4_btn).setOnClickListener(btnListener);
         findViewById(R.id.tab5_btn).setOnClickListener(btnListener);
 
-
-        arr = new ArrayList<SchoolInfoObj>();
-        String val [] = {"KEY_INDEX","TITLE", "BODY", "SELF_ID", "GOOD_EA",
-                "COMMENT_EA" ,"DATE", "IMG_1" , "IMG_2", "IMG_3",
-                "IMG_4","IMG_5","IMG_6","IMG_7","IMG_8",
-                "IMG_9","SELF_ID_KEY_INDEX",
-                "CATEGORY_1"};
-        map.put("url", DEFINE.SERVER_URL + "HellowTalkSel.php");
-        mThread = new AccumThread(this, mAfterAccum , map , 1 , 0 , val);
-
-
-//        m_Adapter = new SchoolInfo_Adapter( SchoolInfoActivity.this , arr , mAfterAccum);
-//        list_number.setAdapter(m_Adapter);
     }
     View.OnClickListener btnListener = new View.OnClickListener() {
         public void onClick(View v) {
@@ -79,18 +75,28 @@ public class SchoolInfoActivity extends ActivityEx {
                     break;
                 case R.id.tab1_btn:
                     Log.e("SKY"  , "--tab1_btn--");
+                    tab_position = 0;
+                    Toast.makeText(SchoolInfoActivity.this, "준비중..", Toast.LENGTH_SHORT).show();
                     break;
                 case R.id.tab2_btn:
                     Log.e("SKY"  , "--tab2_btn--");
+                    tab_position = 1;
+                    Toast.makeText(SchoolInfoActivity.this, "준비중..", Toast.LENGTH_SHORT).show();
                     break;
                 case R.id.tab3_btn:
                     Log.e("SKY"  , "--tab3_btn--");
+                    tab_position = 2;
+                    Toast.makeText(SchoolInfoActivity.this, "준비중..", Toast.LENGTH_SHORT).show();
                     break;
                 case R.id.tab4_btn:
                     Log.e("SKY"  , "--tab4_btn--");
+                    tab_position = 3;
+                    Toast.makeText(SchoolInfoActivity.this, "준비중..", Toast.LENGTH_SHORT).show();
                     break;
                 case R.id.tab5_btn:
                     Log.e("SKY"  , "--tab5_btn--");
+                    tab_position = 4;
+                    Toast.makeText(SchoolInfoActivity.this, "준비중..", Toast.LENGTH_SHORT).show();
                     break;
             }
         }
@@ -100,6 +106,7 @@ public class SchoolInfoActivity extends ActivityEx {
         @Override
         public void handleMessage(Message msg)
         {
+            customProgressClose();
             if (msg.arg1  == 0 ) {
                 arr.clear();
                 //				Map<String, ArrayList<String>> Object_Array = new HashMap<String, ArrayList<String>>();
