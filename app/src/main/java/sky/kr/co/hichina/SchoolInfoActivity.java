@@ -9,7 +9,6 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -33,17 +32,8 @@ public class SchoolInfoActivity extends ActivityEx {
     private int tab_position = 0;
     @Override
     public void onResume() {
-        customProgressPop();
-        arr = new ArrayList<SchoolInfoObj>();
-        String val [] = {"KEY_INDEX","PARENT_KEYINDEX", "BODY", "SELF_ID", "GOOD_EA",
-                "COMMENT_EA" ,"DATE", "IMG_1" , "IMG_2", "IMG_3",
-                "IMG_4","IMG_5","IMG_6","IMG_7","IMG_8",
-                "IMG_9","SELF_ID_KEY_INDEX",
-                "CATEGORY_1"};
-        map.put("url", DEFINE.SERVER_URL + "BOARD_SELECT.php");
-        map.put("TAG", ""+tab_position);
-        mThread = new AccumThread(this, mAfterAccum , map , 1 , 0 , val);
-        mThread.start();		//스레드 시작!!
+
+        postSelAPI();
         super.onResume();
     }
     @Override
@@ -61,6 +51,19 @@ public class SchoolInfoActivity extends ActivityEx {
         findViewById(R.id.tab5_btn).setOnClickListener(btnListener);
 
     }
+    private void postSelAPI(){
+        customProgressPop();
+        arr = new ArrayList<SchoolInfoObj>();
+        String val [] = {"KEY_INDEX","PARENT_KEYINDEX", "BODY", "SELF_ID", "GOOD_EA",
+                "COMMENT_EA" ,"DATE", "IMG_1" , "IMG_2", "IMG_3",
+                "IMG_4","IMG_5","IMG_6","IMG_7","IMG_8",
+                "IMG_9","SELF_ID_KEY_INDEX",
+                "CATEGORY_1"};
+        map.put("url", DEFINE.SERVER_URL + "BOARD_SELECT.php");
+        map.put("TAG", ""+tab_position);
+        mThread = new AccumThread(this, mAfterAccum , map , 1 , 0 , val);
+        mThread.start();		//스레드 시작!!
+    }
     View.OnClickListener btnListener = new View.OnClickListener() {
         public void onClick(View v) {
             switch (v.getId()) {
@@ -76,27 +79,32 @@ public class SchoolInfoActivity extends ActivityEx {
                 case R.id.tab1_btn:
                     Log.e("SKY"  , "--tab1_btn--");
                     tab_position = 0;
-                    Toast.makeText(SchoolInfoActivity.this, "준비중..", Toast.LENGTH_SHORT).show();
+                    postSelAPI();
+                    //Toast.makeText(SchoolInfoActivity.this, "준비중..", Toast.LENGTH_SHORT).show();
                     break;
                 case R.id.tab2_btn:
                     Log.e("SKY"  , "--tab2_btn--");
                     tab_position = 1;
-                    Toast.makeText(SchoolInfoActivity.this, "준비중..", Toast.LENGTH_SHORT).show();
+                    postSelAPI();
+                    //Toast.makeText(SchoolInfoActivity.this, "준비중..", Toast.LENGTH_SHORT).show();
                     break;
                 case R.id.tab3_btn:
                     Log.e("SKY"  , "--tab3_btn--");
                     tab_position = 2;
-                    Toast.makeText(SchoolInfoActivity.this, "준비중..", Toast.LENGTH_SHORT).show();
+                    postSelAPI();
+                    //Toast.makeText(SchoolInfoActivity.this, "준비중..", Toast.LENGTH_SHORT).show();
                     break;
                 case R.id.tab4_btn:
                     Log.e("SKY"  , "--tab4_btn--");
                     tab_position = 3;
-                    Toast.makeText(SchoolInfoActivity.this, "준비중..", Toast.LENGTH_SHORT).show();
+                    postSelAPI();
+                    //Toast.makeText(SchoolInfoActivity.this, "준비중..", Toast.LENGTH_SHORT).show();
                     break;
                 case R.id.tab5_btn:
                     Log.e("SKY"  , "--tab5_btn--");
                     tab_position = 4;
-                    Toast.makeText(SchoolInfoActivity.this, "준비중..", Toast.LENGTH_SHORT).show();
+                    postSelAPI();
+                    //Toast.makeText(SchoolInfoActivity.this, "준비중..", Toast.LENGTH_SHORT).show();
                     break;
             }
         }
