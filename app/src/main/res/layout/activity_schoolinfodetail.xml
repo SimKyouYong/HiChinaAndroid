@@ -39,15 +39,35 @@
             android:id="@+id/top_right_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:visibility="gone"
             android:layout_alignParentRight="true"
             />
     </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/bodyview"
+        android:layout_width="match_parent"
+        android:layout_below="@+id/topview"
+        android:orientation="vertical"
+        android:layout_height="200dp">
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/pager"
+            android:layout_width="fill_parent"
+            android:layout_height="250dp"
+             />
+
+
+
+
+    </LinearLayout>
 
     <ListView
         android:id="@+id/list_number"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/view3"
+        android:layout_alignParentBottom="true"
+        android:layout_below="@+id/bodyview"
         android:divider="#dfdede"
         android:dividerHeight="1dp" />
 

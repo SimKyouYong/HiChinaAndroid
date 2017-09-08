@@ -57,7 +57,7 @@ public class SchoolInfoActivity extends ActivityEx {
         String val [] = {"KEY_INDEX","PARENT_KEYINDEX", "BODY", "SELF_ID", "GOOD_EA",
                 "COMMENT_EA" ,"DATE", "IMG_1" , "IMG_2", "IMG_3",
                 "IMG_4","IMG_5","IMG_6","IMG_7","IMG_8",
-                "IMG_9","SELF_ID_KEY_INDEX",
+                "IMG_9","IMG_10","SELF_ID_KEY_INDEX",
                 "CATEGORY_1"};
         map.put("url", DEFINE.SERVER_URL + "BOARD_SELECT.php");
         map.put("TAG", ""+tab_position);
@@ -133,7 +133,7 @@ public class SchoolInfoActivity extends ActivityEx {
                         arr.add(new SchoolInfoObj(Object_Array[0][i],Object_Array[1][i], Object_Array[2][i], Object_Array[3][i],Object_Array[4][i],
                                 Object_Array[5][i], Object_Array[6][i], Object_Array[7][i],Object_Array[8][i],Object_Array[9][i],
                                 Object_Array[10][i], Object_Array[11][i],Object_Array[12][i], Object_Array[13][i], Object_Array[14][i],
-                                Object_Array[15][i],Object_Array[16][i], Object_Array[17][i]));
+                                Object_Array[15][i],Object_Array[16][i], Object_Array[17][i] , Object_Array[18][i]));
                     }
                 }
 
@@ -149,11 +149,9 @@ public class SchoolInfoActivity extends ActivityEx {
     AdapterView.OnItemClickListener mItemClickListener = new AdapterView.OnItemClickListener() {
         public void onItemClick(AdapterView parent, View view, int position,
                                 long id) {
-//            Intent board = new Intent(mContext, HellowTalk_Detail_Comment.class);
-//            board.putExtra("Object", arr.get(position));
-//            board.putExtra("country", country_);
-//            board.putExtra("page", "스토리");
-//            startActivity(board);
+            Intent board = new Intent(getApplicationContext(), SchoolInfoDetailActivity.class);
+            board.putExtra("Object", arr.get(position));
+            startActivity(board);
         }
     };
 }

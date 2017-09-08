@@ -92,6 +92,8 @@ public class WriteActivity extends ActivityEx {
         SimpleDateFormat formatter = new SimpleDateFormat ( "yyyy-MM-dd HH:mm:ss", Locale.KOREA );
         Date currentTime = new Date ( );
         dTime = formatter.format ( currentTime );
+        dTime = dTime.replace(" ", "");
+        dTime = dTime.trim();
 
         title_edit = (EditText)findViewById(R.id.title_edit);
         body_edit = (EditText)findViewById(R.id.body_edit);
