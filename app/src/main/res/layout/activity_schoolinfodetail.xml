@@ -132,14 +132,36 @@
 
     </LinearLayout>
 
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/bottomview1"
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal">
+        <EditText
+            android:id="@+id/comment_eidt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.8"
+            android:hint="내용을 입력해주세요"/>
+        <Button
+            android:layout_width="wrap_content"
+            android:text="등록"
+            android:id="@+id/comment_btn"
+            android:layout_weight="0.2"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+
     <ListView
         android:id="@+id/list_number"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_alignParentBottom="true"
         android:layout_below="@+id/bodyview"
+        android:layout_above="@+id/bottomview1"
         android:divider="#dfdede"
         android:dividerHeight="1dp" />
-
 </RelativeLayout>
 
