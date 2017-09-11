@@ -27,9 +27,31 @@ public class SchoolInfoObj implements Parcelable{
     String IMG_10;
     String SELF_ID_KEY_INDEX;
     String CATEGORY_1;
+    String GOOD_FLAG;
 
     int COUNT;
-    public SchoolInfoObj(String KEY_INDEX, String PARENT_KEYINDEX, String BODY, String SELF_ID, String GOOD_EA, String COMMENT_EA, String DATE, String IMG_1, String IMG_2, String IMG_3, String IMG_4, String IMG_5, String IMG_6, String IMG_7, String IMG_8, String IMG_9, String IMG_10, String SELF_ID_KEY_INDEX , String CATEGORY_1) {
+    public SchoolInfoObj(String KEY_INDEX,
+                         String PARENT_KEYINDEX,
+                         String BODY,
+                         String SELF_ID,
+                         String GOOD_EA,
+                         String COMMENT_EA,
+                         String DATE,
+                         String IMG_1,
+                         String IMG_2,
+                         String IMG_3,
+                         String IMG_4,
+                         String IMG_5,
+                         String IMG_6,
+                         String IMG_7,
+                         String IMG_8,
+                         String IMG_9,
+                         String IMG_10,
+                         String SELF_ID_KEY_INDEX ,
+                         String CATEGORY_1 ,
+                         String GOOD_FLAG ,
+                         int COUNT) {
+
         this.KEY_INDEX = KEY_INDEX;
         this.PARENT_KEYINDEX = PARENT_KEYINDEX;
         this.BODY = BODY;
@@ -50,36 +72,12 @@ public class SchoolInfoObj implements Parcelable{
         this.SELF_ID_KEY_INDEX = SELF_ID_KEY_INDEX;
         this.CATEGORY_1 = CATEGORY_1;
 
-        int count = 0;
-        if (IMG_1.length() != 0)
-            count++;
-        if (IMG_2.length() != 0)
-            count++;
-        if (IMG_3.length() != 0)
-            count++;
-        if (IMG_4.length() != 0)
-            count++;
-        if (IMG_5.length() != 0)
-            count++;
-        if (IMG_6.length() != 0)
-            count++;
-        if (IMG_7.length() != 0)
-            count++;
-        if (IMG_8.length() != 0)
-            count++;
-        if (IMG_9.length() != 0)
-            count++;
-        if (IMG_10.length() != 0)
-            count++;
-        SetCount(count);
+
+        this.GOOD_FLAG = GOOD_FLAG;
+        this.COUNT = COUNT;
+
     }
 
-    public void SetCount(int count){
-        this.COUNT = count;
-    }
-    public int GetCount(){
-        return  this.COUNT;
-    }
     public String getKEY_INDEX() {
         return KEY_INDEX;
     }
@@ -88,7 +86,7 @@ public class SchoolInfoObj implements Parcelable{
         this.KEY_INDEX = KEY_INDEX;
     }
 
-    public String getTITLE() {
+    public String getPARENT_KEYINDEX() {
         return PARENT_KEYINDEX;
     }
 
@@ -223,11 +221,29 @@ public class SchoolInfoObj implements Parcelable{
     public void setSELF_ID_KEY_INDEX(String SELF_ID_KEY_INDEX) {
         this.SELF_ID_KEY_INDEX = SELF_ID_KEY_INDEX;
     }
+
+    public String getCATEGORY_1() {
+        return CATEGORY_1;
+    }
+
     public void setCATEGORY_1(String CATEGORY_1) {
         this.CATEGORY_1 = CATEGORY_1;
     }
-    public String getCATEGORY_1() {
-        return CATEGORY_1;
+
+    public String getGOOD_FLAG() {
+        return GOOD_FLAG;
+    }
+
+    public void setGOOD_FLAG(String GOOD_FLAG) {
+        this.GOOD_FLAG = GOOD_FLAG;
+    }
+
+    public int getCOUNT() {
+        return COUNT;
+    }
+
+    public void setCOUNT(int COUNT) {
+        this.COUNT = COUNT;
     }
 
     public SchoolInfoObj(Parcel in) {
@@ -235,7 +251,6 @@ public class SchoolInfoObj implements Parcelable{
 	}
 	@Override
 	public void writeToParcel(Parcel dest, int flags) {
-
 
 		dest.writeString(KEY_INDEX);
 		dest.writeString(PARENT_KEYINDEX);
@@ -256,9 +271,11 @@ public class SchoolInfoObj implements Parcelable{
         dest.writeString(IMG_10);
         dest.writeString(SELF_ID_KEY_INDEX);
         dest.writeString(CATEGORY_1);
+        dest.writeString(GOOD_FLAG);
         dest.writeInt(COUNT);
 
-	}
+
+    }
 	private void readFromParcel(Parcel in){
 
         KEY_INDEX = in.readString();
@@ -280,9 +297,12 @@ public class SchoolInfoObj implements Parcelable{
         IMG_10 = in.readString();
         SELF_ID_KEY_INDEX = in.readString();
         CATEGORY_1 = in.readString();
+        GOOD_FLAG = in.readString();
+
         COUNT = in.readInt();
 
-	}
+
+    }
 	@SuppressWarnings("rawtypes")
 	public static final Creator<SchoolInfoObj> CREATOR = new Creator() {
 		public Object createFromParcel(Parcel in) {

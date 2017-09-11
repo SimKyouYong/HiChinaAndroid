@@ -17,6 +17,7 @@ import java.util.Map;
 import co.kr.sky.AccumThread;
 import sky.kr.co.hichina.adapter.SchoolInfo_Adapter;
 import sky.kr.co.hichina.common.ActivityEx;
+import sky.kr.co.hichina.common.Check_Preferences;
 import sky.kr.co.hichina.common.DEFINE;
 import sky.kr.co.hichina.obj.SchoolInfoObj;
 
@@ -30,6 +31,11 @@ public class SchoolInfoActivity extends ActivityEx {
     private ArrayList<SchoolInfoObj> arr;
     private String [][] Object_Array;
     private int tab_position = 0;
+    String val [] = {"KEY_INDEX","PARENT_KEYINDEX", "BODY", "SELF_ID", "GOOD_EA",
+            "COMMENT_EA" ,"DATE", "IMG_1" , "IMG_2", "IMG_3",
+            "IMG_4","IMG_5","IMG_6","IMG_7","IMG_8",
+            "IMG_9","IMG_10","SELF_ID_KEY_INDEX",
+            "CATEGORY_1" , "GOOD_FLAG","COUNT"};
     @Override
     public void onResume() {
 
@@ -54,13 +60,13 @@ public class SchoolInfoActivity extends ActivityEx {
     private void postSelAPI(){
         customProgressPop();
         arr = new ArrayList<SchoolInfoObj>();
-        String val [] = {"KEY_INDEX","PARENT_KEYINDEX", "BODY", "SELF_ID", "GOOD_EA",
-                "COMMENT_EA" ,"DATE", "IMG_1" , "IMG_2", "IMG_3",
-                "IMG_4","IMG_5","IMG_6","IMG_7","IMG_8",
-                "IMG_9","IMG_10","SELF_ID_KEY_INDEX",
-                "CATEGORY_1"};
+
         map.put("url", DEFINE.SERVER_URL + "BOARD_SELECT.php");
         map.put("TAG", ""+tab_position);
+        map.put("SELF_ID", Check_Preferences.getAppPreferences(getApplicationContext() ,"KEY_INDEX"));
+        map.put("PARENTS_FLAG", "0");
+
+
         mThread = new AccumThread(this, mAfterAccum , map , 1 , 0 , val);
         mThread.start();		//스레드 시작!!
     }
@@ -130,10 +136,34 @@ public class SchoolInfoActivity extends ActivityEx {
                 }
                 for (int i = 0; i < (Object_Array[0].length); i++){
                     if (Object_Array[0][i] != null) {
+                        int count = 0;
+                        if (Object_Array[7][i].length() != 0)
+                            count++;
+                        if (Object_Array[8][i].length() != 0)
+                            count++;
+                        if (Object_Array[9][i].length() != 0)
+                            count++;
+                        if (Object_Array[10][i].length() != 0)
+                            count++;
+                        if (Object_Array[11][i].length() != 0)
+                            count++;
+                        if (Object_Array[12][i].length() != 0)
+                            count++;
+                        if (Object_Array[13][i].length() != 0)
+                            count++;
+                        if (Object_Array[14][i].length() != 0)
+                            count++;
+                        if (Object_Array[15][i].length() != 0)
+                            count++;
+                        if (Object_Array[16][i].length() != 0)
+                            count++;
+
                         arr.add(new SchoolInfoObj(Object_Array[0][i],Object_Array[1][i], Object_Array[2][i], Object_Array[3][i],Object_Array[4][i],
                                 Object_Array[5][i], Object_Array[6][i], Object_Array[7][i],Object_Array[8][i],Object_Array[9][i],
                                 Object_Array[10][i], Object_Array[11][i],Object_Array[12][i], Object_Array[13][i], Object_Array[14][i],
-                                Object_Array[15][i],Object_Array[16][i], Object_Array[17][i] , Object_Array[18][i]));
+                                Object_Array[15][i],Object_Array[16][i], Object_Array[17][i] , Object_Array[18][i], Object_Array[19][i],count));
+                        Log.e("SKY" , "GOOD_FLAG :: "  + Object_Array[19][i]);
+
                     }
                 }
 
