@@ -76,6 +76,7 @@ public class SchoolInfoActivity extends ActivityEx {
 
                 case R.id.top_left_btn:
                     Log.e("SKY"  , "--top_left_btn--");
+                    finish();
                     break;
                 case R.id.top_right_btn:
                     Log.e("SKY"  , "--top_right_btn--");

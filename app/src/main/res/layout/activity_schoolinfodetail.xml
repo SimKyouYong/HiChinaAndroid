@@ -39,6 +39,7 @@
             android:id="@+id/top_right_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:text="좋아요"
             android:layout_alignParentRight="true"
             />
     </RelativeLayout>

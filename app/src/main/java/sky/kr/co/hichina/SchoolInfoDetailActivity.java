@@ -94,18 +94,24 @@ public class SchoolInfoDetailActivity extends ActivityEx {
 
         findViewById(R.id.comment_btn).setOnClickListener(btnListener);
         findViewById(R.id.top_right_btn).setOnClickListener(btnListener);
+        findViewById(R.id.top_left_btn).setOnClickListener(btnListener);
 
     }
     View.OnClickListener btnListener = new View.OnClickListener() {
         public void onClick(View v) {
             switch (v.getId()) {
 
+                case R.id.top_left_btn:
+                    Log.e("SKY"  , "--top_left_btn--");
+                    finish();
+
+                    break;
                 case R.id.comment_btn:
                     Log.e("SKY"  , "--comment_btn--");
                     customProgressPop();
                     arr = new ArrayList<SchoolInfoObj>();
-                    map.put("url", DEFINE.SERVER_URL + "BOARD_COMMENT_WRITE.php");
                     map.clear();
+                    map.put("url", DEFINE.SERVER_URL + "BOARD_COMMENT_WRITE.php");
                     map.put("PARENT_KEYINDEX", ""+obj.getKEY_INDEX());
                     map.put("BODY", ""+comment_eidt.getText().toString());
                     map.put("SELF_ID", Check_Preferences.getAppPreferences(getApplicationContext() ,"MEMBER_ID"));
