@@ -39,106 +39,174 @@
             android:id="@+id/top_right_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:text="좋아요"
             android:layout_alignParentRight="true"
             />
     </RelativeLayout>
 
     <LinearLayout
+        android:id="@+id/bodyview"
         android:layout_width="match_parent"
-        android:layout_marginTop="10dp"
-        android:id="@+id/view1"
-        android:layout_height="wrap_content"
-        android:background="#ffffff"
         android:layout_below="@+id/topview"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:background="#DCDCDC"
+        android:layout_height="330dp">
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/pager"
+            android:layout_width="fill_parent"
+            android:layout_height="200dp"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="아이디"
+                android:textColor="#ff0000" android:layout_marginBottom="5dp"
+                android:layout_marginTop="5dp"
+                android:textSize="15dp"
+                android:id="@+id/won_tv"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="내용...."
+                    android:textColor="#ffffff" android:layout_marginBottom="5dp"
+                    android:padding="5dp"
+                    android:textSize="13dp"
+                    android:layout_margin="5dp"
+                    android:background="#000000"
+                    android:id="@+id/category1_tv"/>
+                <TextView
+                    android:padding="5dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="내용...."
+                    android:background="#000000"
+                    android:textColor="#ffffff" android:layout_marginBottom="5dp"
+                    android:layout_margin="5dp"
+                    android:textSize="13dp"
+                    android:id="@+id/category2_tv"/>
+                <TextView
+                    android:padding="5dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="내용...."
+                    android:background="#000000"
+                    android:textColor="#ffffff" android:layout_marginBottom="5dp"
+                    android:layout_margin="5dp"
+                    android:textSize="13dp"
+                    android:id="@+id/category3_tv"/>
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/title_tv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+
+                android:text="adsfsa"
+                android:textColor="#000000"
+                android:textSize="15dp" />
+            <TextView
+                android:id="@+id/body_tv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+
+                android:text="adsfsa"
+                android:textColor="#000000"
+                android:textSize="13dp" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/date_tv"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_weight="0.5"
+
+                    android:text="adsfsa"
+                    android:textColor="#000000"
+                    android:textSize="11dp" />
+                <TextView
+                    android:id="@+id/comment_tv"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_weight="0.8"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginRight="5dp"
+
+                    android:text="adsfsa"
+                    android:textColor="#000000"
+                    android:textSize="11dp" />
+                <TextView
+                    android:id="@+id/good_tv"
+                    android:layout_weight="0.8"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginBottom="2dp"
+                    android:layout_marginLeft="10dp"
+                    android:text="adsfsa"
+                    android:textColor="#000000"
+                    android:textSize="11dp" />
 
 
-        <TextView
-            android:id="@+id/txt1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="20dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginBottom="5dp"
-            android:layout_marginRight="20dp"
-            android:textColor="#000000"
-            android:text="학교생활QA"/>
-        <TextView
-            android:id="@+id/txt2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="15dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginBottom="5dp"
-            android:layout_marginRight="20dp"
-            android:textColor="#000000"
-            android:text="(학교 정보를 서로 공유하는 공간)"/>
+            </LinearLayout>
+        </LinearLayout>
+
+
+
     </LinearLayout>
+
+
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_marginTop="20dp"
         android:layout_height="wrap_content"
-        android:background="#A9A9A9"
-        android:id="@+id/view3"
-        android:layout_below="@+id/view1"
+        android:id="@+id/bottomview1"
+        android:layout_alignParentBottom="true"
         android:orientation="horizontal">
-
-        <Button
-            android:id="@+id/tab1_btn"
+        <EditText
+            android:id="@+id/comment_eidt"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#00000000"
-            android:layout_alignParentRight="true"
-            android:layout_weight="1"
-            android:text="최신순"
-            />
+            android:layout_weight="0.8"
+            android:hint="내용을 입력해주세요"/>
         <Button
-            android:text="인기순"
-            android:id="@+id/tab2_btn"
-            android:layout_width="match_parent"
-            android:background="#00000000"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_weight="1"
-            />
-        <Button
-            android:text="학생사무실"
-            android:id="@+id/tab3_btn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="#00000000"
-            android:layout_alignParentRight="true"
-            android:layout_weight="1"
-            />
-        <Button
-            android:text="증명서발급"
-            android:id="@+id/tab4_btn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="#00000000"
-            android:layout_alignParentRight="true"
-            android:layout_weight="1"
-            />
-        <Button
-            android:text="기타"
-            android:id="@+id/tab5_btn"
-            android:background="#00000000"
-            android:layout_weight="1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            />
+            android:layout_width="wrap_content"
+            android:text="등록"
+            android:id="@+id/comment_btn"
+            android:layout_weight="0.2"
+            android:layout_height="wrap_content"/>
     </LinearLayout>
+
     <ListView
         android:id="@+id/list_number"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/view3"
         android:divider="#dfdede"
-        android:dividerHeight="1dp" />
-
+        android:dividerHeight="1dp"
+        android:layout_below="@+id/bodyview"
+        android:layout_alignParentLeft="true"
+        android:layout_above="@+id/bottomview1"
+        android:layout_alignParentStart="true" />
 </RelativeLayout>
 

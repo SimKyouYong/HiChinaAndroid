@@ -64,8 +64,8 @@ public class PersonStudyActivity extends ActivityEx {
         findViewById(R.id.tab2_btn).setOnClickListener(btnListener);
         findViewById(R.id.tab3_btn).setOnClickListener(btnListener);
         tab1_btn.setText("종류:"+"모두");
-        tab2_btn.setText("종류:"+"모두");
-        tab3_btn.setText("종류:"+"모두");
+        tab2_btn.setText("경력:"+"모두");
+        tab3_btn.setText("전공유무:"+"모두");
 
         postSelAPI(CATEGORY1,CATEGORY2,CATEGORY3);
     }
@@ -170,8 +170,7 @@ public class PersonStudyActivity extends ActivityEx {
                 for (int i = 0; i < (Object_Array[0].length); i++){
                     if (Object_Array[0][i] != null) {
                         int count = 0;
-                        if (Object_Array[7][i].length() != 0)
-                            count++;
+
                         if (Object_Array[8][i].length() != 0)
                             count++;
                         if (Object_Array[9][i].length() != 0)
@@ -189,6 +188,8 @@ public class PersonStudyActivity extends ActivityEx {
                         if (Object_Array[15][i].length() != 0)
                             count++;
                         if (Object_Array[16][i].length() != 0)
+                            count++;
+                        if (Object_Array[17][i].length() != 0)
                             count++;
 
                         arr.add(new PersonStudyObj(Object_Array[0][i],Object_Array[1][i], Object_Array[2][i], Object_Array[3][i],Object_Array[4][i],
