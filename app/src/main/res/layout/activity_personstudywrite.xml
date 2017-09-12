@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+    <RelativeLayout
+        android:id="@+id/topview"
+        android:layout_width="match_parent"
+        android:layout_alignParentTop="true"
+        android:background="#ff0000"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:id="@+id/top_left_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:text="뒤로가기"
+            android:textColor="#ffffff"
+            android:textSize="20dp"
+            android:background="#00000000"
+            />
+
+        <TextView
+            android:layout_margin="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:textSize="20dp"
+            android:visibility="gone"
+            android:text="China"/>
+
+        <Button
+            android:id="@+id/top_right_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:layout_alignParentRight="true"
+            />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_below="@+id/topview"
+        android:layout_width="match_parent"
+        android:layout_margin="5dp"
+        android:gravity="center"
+        android:id="@+id/view00"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <Button
+            android:layout_width="match_parent"
+            android:id="@+id/category1_btn"
+            android:text="-개인/그룹 선택-"
+            android:background="#00000000"
+            android:layout_height="wrap_content"/>
+        <Button
+            android:layout_width="match_parent"
+            android:id="@+id/category2_btn"
+            android:text="-경력 선택-"
+            android:background="#00000000"
+            android:layout_height="wrap_content"/>
+        <Button
+            android:layout_width="match_parent"
+            android:id="@+id/category3_btn"
+            android:text="-전공/비전공 선택-"
+            android:background="#00000000"
+            android:layout_height="wrap_content"/>
+        <Button
+            android:layout_width="match_parent"
+            android:id="@+id/category4_btn"
+            android:text="-시간당 비용 선택-"
+            android:background="#00000000"
+            android:layout_height="wrap_content"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:hint="제목을 입력해주세요"
+            android:id="@+id/title_edit"/>
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:hint="내용을 입력해주세요"
+            android:layout_marginTop="10dp"
+            android:id="@+id/body_edit"/>
+        <Button
+            android:layout_width="wrap_content"
+            android:id="@+id/potho_btn"
+            android:text="사진선택"
+            android:background="#00000000"
+            android:layout_height="wrap_content"/>
+
+    </LinearLayout>
+
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_below="@+id/view00"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="5dp" >
+
+        <HorizontalScrollView
+            android:layout_width="fill_parent"
+            android:layout_height="100dp" >
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal" >
+
+                <FrameLayout
+                    android:id="@+id/fram1"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:visibility="gone" >
+
+                    <ImageButton
+                        android:id="@+id/btn_img1_img1"
+                        android:layout_width="fill_parent"
+                        android:layout_height="100dp"
+                        android:layout_margin="2dp"
+                        android:background="#00000000"
+                        android:scaleType="centerCrop" />
+                </FrameLayout>
+
+                <FrameLayout
+                    android:id="@+id/fram2"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:visibility="gone" >
+
+                    <ImageButton
+                        android:id="@+id/btn_img1_img2"
+                        android:layout_width="fill_parent"
+                        android:layout_height="100dp"
+                        android:layout_margin="2dp"
+                        android:background="#00000000"
+                        android:scaleType="centerCrop" />
+                </FrameLayout>
+
+                <FrameLayout
+                    android:id="@+id/fram3"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:visibility="gone" >
+
+                    <ImageButton
+                        android:id="@+id/btn_img1_img3"
+                        android:layout_width="fill_parent"
+                        android:layout_height="100dp"
+                        android:layout_margin="2dp"
+                        android:background="#00000000"
+                        android:scaleType="centerCrop" />
+                </FrameLayout>
+
+                <FrameLayout
+                    android:id="@+id/fram4"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:visibility="gone" >
+
+                    <ImageButton
+                        android:id="@+id/btn_img1_img4"
+                        android:layout_width="fill_parent"
+                        android:layout_height="100dp"
+                        android:layout_margin="2dp"
+                        android:background="#00000000"
+                        android:scaleType="centerCrop" />
+                </FrameLayout>
+
+                <FrameLayout
+                    android:id="@+id/fram5"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:visibility="gone" >
+
+                    <ImageButton
+                        android:id="@+id/btn_img1_img5"
+                        android:layout_width="fill_parent"
+                        android:layout_height="100dp"
+                        android:layout_margin="2dp"
+                        android:background="#00000000"
+                        android:scaleType="centerInside" />
+                </FrameLayout>
+
+                <FrameLayout
+                    android:id="@+id/fram6"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:visibility="gone" >
+
+                    <ImageButton
+                        android:id="@+id/btn_img1_img6"
+                        android:layout_width="fill_parent"
+                        android:layout_height="100dp"
+                        android:layout_margin="2dp"
+                        android:background="#00000000" />
+                </FrameLayout>
+
+                <FrameLayout
+                    android:id="@+id/fram7"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:visibility="gone" >
+
+                    <ImageButton
+                        android:id="@+id/btn_img1_img7"
+                        android:layout_width="fill_parent"
+                        android:layout_height="100dp"
+                        android:layout_margin="2dp"
+                        android:background="#00000000" />
+                </FrameLayout>
+
+                <FrameLayout
+                    android:id="@+id/fram8"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:visibility="gone" >
+
+                    <ImageButton
+                        android:id="@+id/btn_img1_img8"
+                        android:layout_width="fill_parent"
+                        android:layout_height="100dp"
+                        android:layout_margin="2dp"
+                        android:background="#00000000" />
+                </FrameLayout>
+
+                <FrameLayout
+                    android:id="@+id/fram9"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:visibility="gone" >
+
+                    <ImageButton
+                        android:id="@+id/btn_img1_img9"
+                        android:layout_width="fill_parent"
+                        android:layout_height="100dp"
+                        android:layout_margin="2dp"
+                        android:background="#00000000" />
+                </FrameLayout>
+
+                <FrameLayout
+                    android:id="@+id/fram10"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:visibility="gone" >
+
+                    <ImageButton
+                        android:id="@+id/btn_img1_img10"
+                        android:layout_width="fill_parent"
+                        android:layout_height="100dp"
+                        android:layout_margin="2dp"
+                        android:background="#00000000" />
+                </FrameLayout>
+            </LinearLayout>
+        </HorizontalScrollView>
+    </FrameLayout>
+
+    <Button
+        android:layout_width="match_parent"
+        android:text="등록"
+        android:id="@+id/send_btn"
+        android:layout_alignParentBottom="true"
+        android:layout_height="wrap_content"/>
+
+</RelativeLayout>

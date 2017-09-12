@@ -29,11 +29,13 @@ public class GalleryActivity extends Activity implements OnScrollListener, GridV
 	GridView mGvImageList;
 	ImageAdapter mListAdapter;
 	ArrayList<ThumbImageInfo> mThumbImageInfoList = new ArrayList<ThumbImageInfo>();;
+    String tag;
 	@Override
 	public void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.image_list_view);
+        tag = getIntent().getStringExtra("tag");
 		mGvImageList = (GridView) findViewById(R.id.gvImageList);
 		mGvImageList.setOnScrollListener(this);
 		mGvImageList.setOnItemClickListener(this);
@@ -47,15 +49,28 @@ public class GalleryActivity extends Activity implements OnScrollListener, GridV
 		public void onClick(View v) {
 			switch (v.getId()) {
 			case R.id.btnSelectOk:
-                WriteActivity.pic_flag = true;
-                WriteActivity.mThumbImageInfoList_copy.clear();
-				for (int i = 0; i < mThumbImageInfoList.size(); i++) {
-					if (mThumbImageInfoList.get(i).getIndex() != 999) {
-                        WriteActivity.mThumbImageInfoList_copy.add(mThumbImageInfoList.get(i));
-					}
-				}
-				Collections.sort(WriteActivity.mThumbImageInfoList_copy, new NoAscCompare());
-				finish();
+			    if (tag.equals("0")){
+                    SchoolInfoWriteActivity.pic_flag = true;
+                    SchoolInfoWriteActivity.mThumbImageInfoList_copy.clear();
+                    for (int i = 0; i < mThumbImageInfoList.size(); i++) {
+                        if (mThumbImageInfoList.get(i).getIndex() != 999) {
+                            SchoolInfoWriteActivity.mThumbImageInfoList_copy.add(mThumbImageInfoList.get(i));
+                        }
+                    }
+                    Collections.sort(SchoolInfoWriteActivity.mThumbImageInfoList_copy, new NoAscCompare());
+                    finish();
+                }else if(tag.equals("1")){
+                    PersonStudyWriteActivity.pic_flag = true;
+                    PersonStudyWriteActivity.mThumbImageInfoList_copy.clear();
+                    for (int i = 0; i < mThumbImageInfoList.size(); i++) {
+                        if (mThumbImageInfoList.get(i).getIndex() != 999) {
+                            PersonStudyWriteActivity.mThumbImageInfoList_copy.add(mThumbImageInfoList.get(i));
+                        }
+                    }
+                    Collections.sort(PersonStudyWriteActivity.mThumbImageInfoList_copy, new NoAscCompare());
+                    finish();
+                }
+
 				break;
 			}
 		}
@@ -208,14 +223,14 @@ public class GalleryActivity extends Activity implements OnScrollListener, GridV
 	}
     @Override
     protected void onDestroy(){
-        WriteActivity.pic_flag = true;
-        WriteActivity.mThumbImageInfoList_copy.clear();
+        SchoolInfoWriteActivity.pic_flag = true;
+        SchoolInfoWriteActivity.mThumbImageInfoList_copy.clear();
         for (int i = 0; i < mThumbImageInfoList.size(); i++) {
             if (mThumbImageInfoList.get(i).getIndex() != 999) {
-                WriteActivity.mThumbImageInfoList_copy.add(mThumbImageInfoList.get(i));
+                SchoolInfoWriteActivity.mThumbImageInfoList_copy.add(mThumbImageInfoList.get(i));
             }
         }
-        Collections.sort(WriteActivity.mThumbImageInfoList_copy, new NoAscCompare());
+        Collections.sort(SchoolInfoWriteActivity.mThumbImageInfoList_copy, new NoAscCompare());
         finish();
         super.onDestroy();
     }

@@ -37,13 +37,16 @@ import sky.kr.co.hichina.common.Check_Preferences;
 import sky.kr.co.hichina.common.DEFINE;
 import sky.kr.co.hichina.obj.ThumbImageInfo;
 
-public class WriteActivity extends ActivityEx {
+public class PersonStudyWriteActivity extends ActivityEx {
     public static Boolean pic_flag = false;
     public static ArrayList<ThumbImageInfo> mThumbImageInfoList_copy = new ArrayList<ThumbImageInfo>();;
     int serverResponseCode = 0;
 
-    private String CATEGORY = "";
-    private Button category_btn;
+    private String CATEGORY1 = "";
+    private String CATEGORY2 = "";
+    private String CATEGORY3 = "";
+    private String CATEGORY4 = "";
+    private Button category1_btn , category2_btn , category3_btn , category4_btn;
     private EditText title_edit , body_edit;
     private AccumThread mThread;
     private Map<String, String> map = new HashMap<String, String>();
@@ -86,7 +89,7 @@ public class WriteActivity extends ActivityEx {
     @Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_write);
+		setContentView(R.layout.activity_personstudywrite);
 
 
         SimpleDateFormat formatter = new SimpleDateFormat ( "yyyy-MM-dd HH:mm:ss", Locale.KOREA );
@@ -97,14 +100,20 @@ public class WriteActivity extends ActivityEx {
 
         title_edit = (EditText)findViewById(R.id.title_edit);
         body_edit = (EditText)findViewById(R.id.body_edit);
-        category_btn = (Button)findViewById(R.id.category_btn);
+        category1_btn = (Button)findViewById(R.id.category1_btn);
+        category2_btn = (Button)findViewById(R.id.category2_btn);
+        category3_btn = (Button)findViewById(R.id.category3_btn);
+        category4_btn = (Button)findViewById(R.id.category4_btn);
 
-//        title_edit.setText("title 111");
-        title_edit.setVisibility(View.GONE);
-        body_edit.setText("title 111222");
+        title_edit.setText("title 111");
+        //title_edit.setVisibility(View.GONE);
+        body_edit.setText("body 111222");
 
         findViewById(R.id.top_left_btn).setOnClickListener(btnListener);
-        findViewById(R.id.category_btn).setOnClickListener(btnListener);
+        findViewById(R.id.category1_btn).setOnClickListener(btnListener);
+        findViewById(R.id.category2_btn).setOnClickListener(btnListener);
+        findViewById(R.id.category3_btn).setOnClickListener(btnListener);
+        findViewById(R.id.category4_btn).setOnClickListener(btnListener);
         findViewById(R.id.potho_btn).setOnClickListener(btnListener);
         findViewById(R.id.send_btn).setOnClickListener(btnListener);
         findViewById(R.id.top_left_btn).setOnClickListener(btnListener);
@@ -149,27 +158,73 @@ public class WriteActivity extends ActivityEx {
                     Log.e("SKY"  , "--top_left_btn--");
                     finish();
                     break;
-                case R.id.category_btn:
-                    Log.e("SKY"  , "--category_btn--");
-
-                    final CharSequence[] items = {"기타", "증명서발급", "학생사무실" , "학부모" , "수업/선생님" , "건의사항" , "실용중국어"};
-
-                    AlertDialog.Builder builder = new AlertDialog.Builder(WriteActivity.this);
+                case R.id.category1_btn:
+                    Log.e("SKY"  , "--category1_btn--");
+                    final CharSequence[] items = {"개인과외", "그룹과외"};
+                    AlertDialog.Builder builder = new AlertDialog.Builder(PersonStudyWriteActivity.this);
                     builder.setTitle("선택하세요")
                             .setItems(items, new DialogInterface.OnClickListener(){    // 목록 클릭시 설정
                                 public void onClick(DialogInterface dialog, int index){
-                                    CATEGORY = (String) items[index];
-                                    category_btn.setText(""+CATEGORY);
+                                    CATEGORY1 = (String) items[index];
+                                    category1_btn.setText(""+CATEGORY1);
                                 }
                             });
 
                     AlertDialog dialog = builder.create();    // 알림창 객체 생성
                     dialog.show();    // 알림창 띄우기
                     break;
+                case R.id.category2_btn:
+                    Log.e("SKY"  , "--category2_btn--");
+                    final CharSequence[] items2 = {"[1년이하]", "[1년 - 2년]", "[2년 - 3년]", "[3년 - 5년]", "[5년 - 7년]", "[7년이상]"};
+                    AlertDialog.Builder builder2 = new AlertDialog.Builder(PersonStudyWriteActivity.this);
+                    builder2.setTitle("선택하세요")
+                            .setItems(items2, new DialogInterface.OnClickListener(){    // 목록 클릭시 설정
+                                public void onClick(DialogInterface dialog, int index){
+                                    CATEGORY2 = (String) items2[index];
+                                    category2_btn.setText(""+CATEGORY2);
+                                }
+                            });
+
+                    AlertDialog dialog2 = builder2.create();    // 알림창 객체 생성
+                    dialog2.show();    // 알림창 띄우기
+                    break;
+                case R.id.category3_btn:
+                    Log.e("SKY"  , "--category3_btn--");
+                    final CharSequence[] items3 = {"전공자", "비전공자"};
+                    AlertDialog.Builder builder3 = new AlertDialog.Builder(PersonStudyWriteActivity.this);
+                    builder3.setTitle("선택하세요")
+                            .setItems(items3, new DialogInterface.OnClickListener(){    // 목록 클릭시 설정
+                                public void onClick(DialogInterface dialog, int index){
+                                    CATEGORY3 = (String) items3[index];
+                                    category3_btn.setText(""+CATEGORY3);
+                                }
+                            });
+
+                    AlertDialog dialog3 = builder3.create();    // 알림창 객체 생성
+                    dialog3.show();    // 알림창 띄우기
+                    break;
+                case R.id.category4_btn:
+                    Log.e("SKY"  , "--category4_btn--");
+                    final CharSequence[] items4 = {"50元", "60元", "70元", "80元", "90元", "100元"};
+                    AlertDialog.Builder builder4 = new AlertDialog.Builder(PersonStudyWriteActivity.this);
+                    builder4.setTitle("선택하세요")
+                            .setItems(items4, new DialogInterface.OnClickListener(){    // 목록 클릭시 설정
+                                public void onClick(DialogInterface dialog, int index){
+                                    CATEGORY4 = (String) items4[index];
+                                    category4_btn.setText(""+CATEGORY4);
+                                }
+                            });
+
+                    AlertDialog dialog4 = builder4.create();    // 알림창 객체 생성
+                    dialog4.show();    // 알림창 띄우기
+                    break;
                 case R.id.send_btn:
                     Log.e("SKY"  , "--send_btn--");
-                    if (category_btn.getText().toString().equals("-카테고리 선택-")) {
-                        Toast.makeText(getApplicationContext() , "카테고리를 선택해주세요" , Toast.LENGTH_SHORT).show();
+                    if (CATEGORY1.equals("") || CATEGORY2.equals("") || CATEGORY3.equals("") || CATEGORY4.equals("")) {
+                        Toast.makeText(getApplicationContext() , "카테고리를 모두 선택해주세요" , Toast.LENGTH_SHORT).show();
+                        return;
+                    }else if(title_edit.getText().toString().equals("")){
+                        Toast.makeText(getApplicationContext() , "제목을 입력해주세요" , Toast.LENGTH_SHORT).show();
                         return;
                     }else if(body_edit.getText().toString().equals("")){
                         Toast.makeText(getApplicationContext() , "내용을 입력해주세요" , Toast.LENGTH_SHORT).show();
@@ -180,7 +235,8 @@ public class WriteActivity extends ActivityEx {
                     break;
                 case R.id.potho_btn:
                     Log.e("SKY"  , "--potho_btn--");
-                    Intent intent = new Intent(WriteActivity.this, GalleryActivity.class);
+                    Intent intent = new Intent(PersonStudyWriteActivity.this, GalleryActivity.class);
+                    intent.putExtra("tag" , "1");
                     startActivity(intent);
                     break;
 
@@ -201,20 +257,23 @@ public class WriteActivity extends ActivityEx {
             //파라미터 전송
 
 
-            map.put("url", DEFINE.SERVER_URL + "BOARD_WRITE.php");
-            //map.put("TITLE",title_edit.getText().toString());
+            map.put("url", DEFINE.SERVER_URL + "POERSON_STUDY_WRITE.php");
+            map.put("TITLE",title_edit.getText().toString());
             map.put("BODY",body_edit.getText().toString());
             map.put("SELF_ID", Check_Preferences.getAppPreferences(getApplicationContext() ,"MEMBER_ID"));
             map.put("DATE", dTime);
             map.put("SELF_ID_KEY_INDEX",Check_Preferences.getAppPreferences(getApplicationContext() ,"KEY_INDEX"));
-            map.put("CATEGORY_1",category_btn.getText().toString());
+            map.put("CATEGORY_1",category1_btn.getText().toString());
+            map.put("CATEGORY_2",category2_btn.getText().toString());
+            map.put("CATEGORY_3",category3_btn.getText().toString());
+            map.put("CATEGORY_4",category4_btn.getText().toString());
 
             for (int i = 0; i < filename.size(); i++) {
                 String[] file_name = filename.get(i).split("/");
                 map.put("image_name" + (i+1),file_name[file_name.length-1]);		//type 에 따른.. 값으로..edit
             }
 
-            mThread = new AccumThread(WriteActivity.this , mAfterAccum , map , 0 , 0 , null);
+            mThread = new AccumThread(PersonStudyWriteActivity.this , mAfterAccum , map , 0 , 0 , null);
             mThread.start();		//스레드 시작!!
             return;
         }else{
@@ -265,14 +324,17 @@ public class WriteActivity extends ActivityEx {
 
                     Log.e("SKY" , "filename.size() :: " + filename.size());
                     Log.e("SKY" , "i :: " + (i+1));
-                    map.put("url", DEFINE.SERVER_URL + "BOARD_WRITE.php");
-                    //map.put("TITLE",title_edit.getText().toString());
+                    map.put("url", DEFINE.SERVER_URL + "POERSON_STUDY_WRITE.php");
+                    map.put("TITLE",title_edit.getText().toString());
                     map.put("BODY",body_edit.getText().toString());
                     map.put("SELF_ID", Check_Preferences.getAppPreferences(getApplicationContext() ,"MEMBER_ID"));
                     map.put("DATE", dTime);
                     map.put("SELF_ID_KEY_INDEX",Check_Preferences.getAppPreferences(getApplicationContext() ,"KEY_INDEX"));
-                    map.put("CATEGORY_1",category_btn.getText().toString());
-                    String MEMBER_ID = Check_Preferences.getAppPreferences(WriteActivity.this , "MEMBER_ID");
+                    map.put("CATEGORY_1",category1_btn.getText().toString());
+                    map.put("CATEGORY_2",category2_btn.getText().toString());
+                    map.put("CATEGORY_3",category3_btn.getText().toString());
+                    map.put("CATEGORY_4",category4_btn.getText().toString());
+                    String MEMBER_ID = Check_Preferences.getAppPreferences(PersonStudyWriteActivity.this , "MEMBER_ID");
 
                     for (int i = 0; i < filename.size(); i++) {
                         String[] file_name = filename.get(i).split("/");
@@ -281,7 +343,7 @@ public class WriteActivity extends ActivityEx {
                         }
                     }
 
-                    mThread = new AccumThread(WriteActivity.this , mAfterAccum , map , 0 , 0 , null);
+                    mThread = new AccumThread(PersonStudyWriteActivity.this , mAfterAccum , map , 0 , 0 , null);
                     mThread.start();		//스레드 시작!!
 
                 }
@@ -338,7 +400,7 @@ public class WriteActivity extends ActivityEx {
 
                 dos = new DataOutputStream(conn.getOutputStream());
 
-                String MEMBER_ID = Check_Preferences.getAppPreferences(WriteActivity.this , "MEMBER_ID");
+                String MEMBER_ID = Check_Preferences.getAppPreferences(PersonStudyWriteActivity.this , "MEMBER_ID");
                 dos.writeBytes(twoHyphens + boundary + lineEnd);
                 if (file_name[file_name.length-1].length() > 3){
                     dos.writeBytes("Content-Disposition: form-data; name=\"uploaded_file\";" +
