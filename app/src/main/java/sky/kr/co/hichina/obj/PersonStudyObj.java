@@ -10,8 +10,8 @@ public class PersonStudyObj implements Parcelable{
 
 	String KEY_INDEX;
 	String PARENT_KEYINDEX;
-    String TITLE;
     String BODY;
+    String TITLE;
     String SELF_ID;
     String GOOD_EA;
     String COMMENT_EA;
@@ -30,14 +30,15 @@ public class PersonStudyObj implements Parcelable{
     String CATEGORY_1;
     String CATEGORY_2;
     String CATEGORY_3;
+    String CATEGORY_4;
     String GOOD_FLAG;
     int COUNT;
 
-    public PersonStudyObj(String KEY_INDEX, String PARENT_KEYINDEX, String TITLE, String BODY, String SELF_ID, String GOOD_EA, String COMMENT_EA, String DATE, String IMG_1, String IMG_2, String IMG_3, String IMG_4, String IMG_5, String IMG_6, String IMG_7, String IMG_8, String IMG_9, String IMG_10, String SELF_ID_KEY_INDEX, String CATEGORY_1, String CATEGORY_2, String CATEGORY_3, String GOOD_FLAG, int COUNT) {
+    public PersonStudyObj(String KEY_INDEX, String PARENT_KEYINDEX, String BODY, String TITLE, String SELF_ID, String GOOD_EA, String COMMENT_EA, String DATE, String IMG_1, String IMG_2, String IMG_3, String IMG_4, String IMG_5, String IMG_6, String IMG_7, String IMG_8, String IMG_9, String IMG_10, String SELF_ID_KEY_INDEX, String CATEGORY_1, String CATEGORY_2, String CATEGORY_3, String CATEGORY_4, String GOOD_FLAG, int COUNT) {
         this.KEY_INDEX = KEY_INDEX;
         this.PARENT_KEYINDEX = PARENT_KEYINDEX;
-        this.TITLE = TITLE;
         this.BODY = BODY;
+        this.TITLE = TITLE;
         this.SELF_ID = SELF_ID;
         this.GOOD_EA = GOOD_EA;
         this.COMMENT_EA = COMMENT_EA;
@@ -56,6 +57,7 @@ public class PersonStudyObj implements Parcelable{
         this.CATEGORY_1 = CATEGORY_1;
         this.CATEGORY_2 = CATEGORY_2;
         this.CATEGORY_3 = CATEGORY_3;
+        this.CATEGORY_4 = CATEGORY_4;
         this.GOOD_FLAG = GOOD_FLAG;
         this.COUNT = COUNT;
     }
@@ -76,20 +78,20 @@ public class PersonStudyObj implements Parcelable{
         this.PARENT_KEYINDEX = PARENT_KEYINDEX;
     }
 
-    public String getTITLE() {
-        return TITLE;
-    }
-
-    public void setTITLE(String TITLE) {
-        this.TITLE = TITLE;
-    }
-
     public String getBODY() {
         return BODY;
     }
 
     public void setBODY(String BODY) {
         this.BODY = BODY;
+    }
+
+    public String getTITLE() {
+        return TITLE;
+    }
+
+    public void setTITLE(String TITLE) {
+        this.TITLE = TITLE;
     }
 
     public String getSELF_ID() {
@@ -236,6 +238,14 @@ public class PersonStudyObj implements Parcelable{
         this.CATEGORY_3 = CATEGORY_3;
     }
 
+    public String getCATEGORY_4() {
+        return CATEGORY_4;
+    }
+
+    public void setCATEGORY_4(String CATEGORY_4) {
+        this.CATEGORY_4 = CATEGORY_4;
+    }
+
     public String getGOOD_FLAG() {
         return GOOD_FLAG;
     }
@@ -260,8 +270,8 @@ public class PersonStudyObj implements Parcelable{
 
 		dest.writeString(KEY_INDEX);
 		dest.writeString(PARENT_KEYINDEX);
-        dest.writeString(TITLE);
         dest.writeString(BODY);
+        dest.writeString(TITLE);
         dest.writeString(SELF_ID);
         dest.writeString(GOOD_EA);
         dest.writeString(COMMENT_EA);
@@ -280,6 +290,7 @@ public class PersonStudyObj implements Parcelable{
         dest.writeString(CATEGORY_1);
         dest.writeString(CATEGORY_2);
         dest.writeString(CATEGORY_3);
+        dest.writeString(CATEGORY_4);
         dest.writeString(GOOD_FLAG);
         dest.writeInt(COUNT);
 
@@ -289,8 +300,8 @@ public class PersonStudyObj implements Parcelable{
 
         KEY_INDEX = in.readString();
         PARENT_KEYINDEX = in.readString();
-        TITLE = in.readString();
         BODY = in.readString();
+        TITLE = in.readString();
         SELF_ID = in.readString();
         GOOD_EA = in.readString();
         COMMENT_EA = in.readString();
@@ -309,6 +320,7 @@ public class PersonStudyObj implements Parcelable{
         CATEGORY_1 = in.readString();
         CATEGORY_2 = in.readString();
         CATEGORY_3 = in.readString();
+        CATEGORY_4 = in.readString();
         GOOD_FLAG = in.readString();
 
         COUNT = in.readInt();

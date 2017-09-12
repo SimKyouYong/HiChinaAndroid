@@ -30,11 +30,12 @@ public class PersonStudyActivity extends ActivityEx {
     private String [][] Object_Array;
     private PersonStudy_Adapter m_Adapter;
 
-    String val [] = {"KEY_INDEX","PARENT_KEYINDEX", "TITLE", "BODY", "SELF_ID", "GOOD_EA",
+
+    String val [] = {"KEY_INDEX","PARENT_KEYINDEX", "BODY", "TITLE", "SELF_ID", "GOOD_EA",
             "COMMENT_EA" ,"DATE", "IMG_1" , "IMG_2", "IMG_3",
             "IMG_4","IMG_5","IMG_6","IMG_7","IMG_8",
             "IMG_9","IMG_10","SELF_ID_KEY_INDEX",
-            "CATEGORY_1" ,"CATEGORY_2" ,"CATEGORY_3" , "GOOD_FLAG","COUNT"};
+            "CATEGORY_1" ,"CATEGORY_2" ,"CATEGORY_3","CATEGORY_4" , "GOOD_FLAG","COUNT"};
     @Override
     public void onResume() {
 
@@ -51,7 +52,7 @@ public class PersonStudyActivity extends ActivityEx {
 
         findViewById(R.id.top_right_btn).setOnClickListener(btnListener);
 
-        //postSelAPI();
+        postSelAPI("","","");
     }
     View.OnClickListener btnListener = new View.OnClickListener() {
         public void onClick(View v) {
@@ -69,7 +70,7 @@ public class PersonStudyActivity extends ActivityEx {
             }
         }
     };
-    private void postSelAPI(){
+    private void postSelAPI(String category_1 , String category_2 , String category_3){
         customProgressPop();
         arr = new ArrayList<PersonStudyObj>();
 
@@ -77,9 +78,9 @@ public class PersonStudyActivity extends ActivityEx {
         map.put("SELF_ID", Check_Preferences.getAppPreferences(getApplicationContext() ,"KEY_INDEX"));
         map.put("PARENTS_FLAG", "1");
 
-        map.put("CATEGORY_1", "1");
-        map.put("CATEGORY_2", "1");
-        map.put("CATEGORY_3", "1");
+        map.put("CATEGORY_1", category_1);
+        map.put("CATEGORY_2", category_2);
+        map.put("CATEGORY_3", category_3);
 
         mThread = new AccumThread(this, mAfterAccum , map , 1 , 0 , val);
         mThread.start();		//스레드 시작!!
@@ -131,7 +132,7 @@ public class PersonStudyActivity extends ActivityEx {
                                 Object_Array[5][i], Object_Array[6][i], Object_Array[7][i],Object_Array[8][i],Object_Array[9][i],
                                 Object_Array[10][i], Object_Array[11][i],Object_Array[12][i], Object_Array[13][i], Object_Array[14][i],
                                 Object_Array[15][i],Object_Array[16][i], Object_Array[17][i] , Object_Array[18][i], Object_Array[19][i]
-                                , Object_Array[20][i], Object_Array[21][i], Object_Array[22][i],count));
+                                , Object_Array[20][i], Object_Array[21][i], Object_Array[22][i], Object_Array[23][i],count));
                         Log.e("SKY" , "GOOD_FLAG :: "  + Object_Array[19][i]);
 
                     }

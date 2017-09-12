@@ -50,7 +50,7 @@ public class PersonStudy_Adapter extends BaseAdapter {
 	}
 
 	static class ViewHolder {
-		TextView body_tv , date_tv ,comment_tv,good_tv , name_tv;
+		TextView title_tv , id_tv ,won_tv,good_tv;
         NetworkImageView img1;
 
 	}
@@ -59,10 +59,9 @@ public class PersonStudy_Adapter extends BaseAdapter {
 		ViewHolder vh = new ViewHolder();
 		if (convertView == null) {
 			convertView = inflater.inflate(R.layout.activity_personstudy_item,null);
-            vh.name_tv = (TextView) convertView.findViewById(R.id.name_tv);
-            vh.body_tv = (TextView) convertView.findViewById(R.id.body_tv);
-			vh.date_tv = (TextView) convertView.findViewById(R.id.date_tv);
-			vh.comment_tv = (TextView) convertView.findViewById(R.id.comment_tv);
+            vh.title_tv = (TextView) convertView.findViewById(R.id.title_tv);
+            vh.id_tv = (TextView) convertView.findViewById(R.id.id_tv);
+			vh.won_tv = (TextView) convertView.findViewById(R.id.won_tv);
 			vh.good_tv = (TextView) convertView.findViewById(R.id.good_tv);
             vh.img1 = (NetworkImageView) convertView.findViewById(R.id.img1);
 
@@ -70,10 +69,9 @@ public class PersonStudy_Adapter extends BaseAdapter {
 		}else {
 			vh = (ViewHolder) convertView.getTag();
 		}
-        vh.name_tv.setText(board.getSELF_ID() + "(" +board.getCATEGORY_1() + ")");
-        vh.body_tv.setText(board.getBODY());
-		vh.date_tv.setText(board.getDATE());
-		vh.comment_tv.setText("댓글:" + board.getCOMMENT_EA());
+        vh.title_tv.setText(board.getTITLE());
+        vh.id_tv.setText(board.getSELF_ID());
+		vh.won_tv.setText(board.getCATEGORY_4());
 		vh.good_tv.setText("좋아요:" + board.getGOOD_EA());
         H5ImageLoader.getInstance(activity).set(DEFINE.SERVER_IMG_URL + board.getIMG_1(), vh.img1);
 
