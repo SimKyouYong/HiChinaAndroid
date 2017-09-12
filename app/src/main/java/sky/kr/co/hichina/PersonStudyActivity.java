@@ -1,5 +1,7 @@
 package sky.kr.co.hichina;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -7,6 +9,7 @@ import android.os.Message;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 
@@ -21,6 +24,7 @@ import sky.kr.co.hichina.common.Check_Preferences;
 import sky.kr.co.hichina.common.DEFINE;
 import sky.kr.co.hichina.obj.PersonStudyObj;
 
+
 public class PersonStudyActivity extends ActivityEx {
     private AccumThread mThread;
     private Map<String, String> map = new HashMap<String, String>();
@@ -30,7 +34,9 @@ public class PersonStudyActivity extends ActivityEx {
     private String [][] Object_Array;
     private PersonStudy_Adapter m_Adapter;
 
+    private String CATEGORY1="" ,CATEGORY2="" ,CATEGORY3="" ;
 
+    private Button tab1_btn ,tab2_btn ,tab3_btn;
     String val [] = {"KEY_INDEX","PARENT_KEYINDEX", "BODY", "TITLE", "SELF_ID", "GOOD_EA",
             "COMMENT_EA" ,"DATE", "IMG_1" , "IMG_2", "IMG_3",
             "IMG_4","IMG_5","IMG_6","IMG_7","IMG_8",
@@ -47,17 +53,74 @@ public class PersonStudyActivity extends ActivityEx {
         setContentView(R.layout.activity_personstudy);
 
         list_number = (ListView)findViewById(R.id.list_number);
+        tab1_btn = (Button)findViewById(R.id.tab1_btn);
+        tab2_btn = (Button)findViewById(R.id.tab2_btn);
+        tab3_btn = (Button)findViewById(R.id.tab3_btn);
 
 
 
         findViewById(R.id.top_right_btn).setOnClickListener(btnListener);
+        findViewById(R.id.tab1_btn).setOnClickListener(btnListener);
+        findViewById(R.id.tab2_btn).setOnClickListener(btnListener);
+        findViewById(R.id.tab3_btn).setOnClickListener(btnListener);
+        tab1_btn.setText("종류:"+"모두");
+        tab2_btn.setText("종류:"+"모두");
+        tab3_btn.setText("종류:"+"모두");
 
-        postSelAPI("","","");
+        postSelAPI(CATEGORY1,CATEGORY2,CATEGORY3);
     }
     View.OnClickListener btnListener = new View.OnClickListener() {
         public void onClick(View v) {
             switch (v.getId()) {
+                case R.id.tab1_btn:
+                    Log.e("SKY"  , "--tab1_btn--");
+                    final CharSequence[] items = {"개인과외", "그룹과외"};
 
+                    AlertDialog.Builder builder = new AlertDialog.Builder(PersonStudyActivity.this);
+                    builder.setTitle("선택하세요")
+                            .setItems(items, new DialogInterface.OnClickListener(){    // 목록 클릭시 설정
+                                public void onClick(DialogInterface dialog, int index){
+                                    CATEGORY1 = (String) items[index];
+                                    tab1_btn.setText("종류:"+CATEGORY1);
+                                    postSelAPI(CATEGORY1,CATEGORY2,CATEGORY3);
+                                }
+                            });
+
+                    AlertDialog dialog = builder.create();    // 알림창 객체 생성
+                    dialog.show();    // 알림창 띄우기
+                    break;
+                case R.id.tab2_btn:
+                    Log.e("SKY"  , "--tab2_btn--");
+                    final CharSequence[] items2 = {"[1년이하]", "[1년 - 2년]", "[2년 - 3년]", "[3년 - 5년]", "[5년 - 7년]", "[7년이상]"};
+                    AlertDialog.Builder builder2 = new AlertDialog.Builder(PersonStudyActivity.this);
+                    builder2.setTitle("선택하세요")
+                            .setItems(items2, new DialogInterface.OnClickListener(){    // 목록 클릭시 설정
+                                public void onClick(DialogInterface dialog, int index){
+                                    CATEGORY2 = (String) items2[index];
+                                    tab2_btn.setText("경력:"+CATEGORY2);
+                                    postSelAPI(CATEGORY1,CATEGORY2,CATEGORY3);
+                                }
+                            });
+
+                    AlertDialog dialog2 = builder2.create();    // 알림창 객체 생성
+                    dialog2.show();    // 알림창 띄우기
+                    break;
+                case R.id.tab3_btn:
+                    Log.e("SKY"  , "--tab3_btn--");
+                    final CharSequence[] items3 = {"전공자", "비전공자"};
+                    AlertDialog.Builder builder3 = new AlertDialog.Builder(PersonStudyActivity.this);
+                    builder3.setTitle("선택하세요")
+                            .setItems(items3, new DialogInterface.OnClickListener(){    // 목록 클릭시 설정
+                                public void onClick(DialogInterface dialog, int index){
+                                    CATEGORY3 = (String) items3[index];
+                                    tab3_btn.setText("전공유무:"+CATEGORY3);
+                                    postSelAPI(CATEGORY1,CATEGORY2,CATEGORY3);
+                                }
+                            });
+
+                    AlertDialog dialog3 = builder3.create();    // 알림창 객체 생성
+                    dialog3.show();    // 알림창 띄우기
+                    break;
                 case R.id.top_left_btn:
                     Log.e("SKY"  , "--top_left_btn--");
                     finish();
@@ -73,7 +136,7 @@ public class PersonStudyActivity extends ActivityEx {
     private void postSelAPI(String category_1 , String category_2 , String category_3){
         customProgressPop();
         arr = new ArrayList<PersonStudyObj>();
-
+        map.clear();
         map.put("url", DEFINE.SERVER_URL + "POERSON_STUDY_SELECT.php");
         map.put("SELF_ID", Check_Preferences.getAppPreferences(getApplicationContext() ,"KEY_INDEX"));
         map.put("PARENTS_FLAG", "1");
@@ -150,7 +213,7 @@ public class PersonStudyActivity extends ActivityEx {
     AdapterView.OnItemClickListener mItemClickListener = new AdapterView.OnItemClickListener() {
         public void onItemClick(AdapterView parent, View view, int position,
                                 long id) {
-            Intent board = new Intent(getApplicationContext(), SchoolInfoDetailActivity.class);
+            Intent board = new Intent(getApplicationContext(), PersonStudyDetailActivity.class);
             board.putExtra("Object", arr.get(position));
             startActivity(board);
         }

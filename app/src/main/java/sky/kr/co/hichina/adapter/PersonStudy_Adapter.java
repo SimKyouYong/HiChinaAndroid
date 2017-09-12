@@ -50,7 +50,7 @@ public class PersonStudy_Adapter extends BaseAdapter {
 	}
 
 	static class ViewHolder {
-		TextView title_tv , id_tv ,won_tv,good_tv;
+		TextView category1_tv , title_tv , id_tv ,won_tv,good_tv;
         NetworkImageView img1;
 
 	}
@@ -59,7 +59,8 @@ public class PersonStudy_Adapter extends BaseAdapter {
 		ViewHolder vh = new ViewHolder();
 		if (convertView == null) {
 			convertView = inflater.inflate(R.layout.activity_personstudy_item,null);
-            vh.title_tv = (TextView) convertView.findViewById(R.id.title_tv);
+			vh.category1_tv = (TextView) convertView.findViewById(R.id.category1_tv);
+			vh.title_tv = (TextView) convertView.findViewById(R.id.title_tv);
             vh.id_tv = (TextView) convertView.findViewById(R.id.id_tv);
 			vh.won_tv = (TextView) convertView.findViewById(R.id.won_tv);
 			vh.good_tv = (TextView) convertView.findViewById(R.id.good_tv);
@@ -69,7 +70,8 @@ public class PersonStudy_Adapter extends BaseAdapter {
 		}else {
 			vh = (ViewHolder) convertView.getTag();
 		}
-        vh.title_tv.setText(board.getTITLE());
+		vh.category1_tv.setText(board.getCATEGORY_1());
+		vh.title_tv.setText(board.getTITLE());
         vh.id_tv.setText(board.getSELF_ID());
 		vh.won_tv.setText(board.getCATEGORY_4());
 		vh.good_tv.setText("좋아요:" + board.getGOOD_EA());
