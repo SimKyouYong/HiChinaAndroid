@@ -22,7 +22,7 @@ import sky.kr.co.hichina.common.Check_Preferences;
 import sky.kr.co.hichina.common.DEFINE;
 import sky.kr.co.hichina.obj.SchoolInfoObj;
 
-public class SchoolInfoActivity extends ActivityEx {
+public class ChinaLifeActivity extends ActivityEx {
 
     private EditText id_edit , email_edit;
     private AccumThread mThread;
@@ -33,8 +33,7 @@ public class SchoolInfoActivity extends ActivityEx {
     private String [][] Object_Array;
     private int tab_position = 0;
     private String CATEGORY_1 = "";
-    private Button tab3_btn , tab4_btn , tab5_btn;
-
+    private Button tab3_btn , tab4_btn , tab5_btn , tab6_btn, tab7_btn, tab8_btn, tab9_btn, tab10_btn;
     String val [] = {"KEY_INDEX","PARENT_KEYINDEX", "BODY", "SELF_ID", "GOOD_EA",
             "COMMENT_EA" ,"DATE", "IMG_1" , "IMG_2", "IMG_3",
             "IMG_4","IMG_5","IMG_6","IMG_7","IMG_8",
@@ -49,13 +48,17 @@ public class SchoolInfoActivity extends ActivityEx {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_schoolinfo);
+        setContentView(R.layout.activity_chinalife);
         list_number = (ListView)findViewById(R.id.list_number);
 
         tab3_btn = (Button)findViewById(R.id.tab3_btn);
         tab4_btn = (Button)findViewById(R.id.tab4_btn);
         tab5_btn = (Button)findViewById(R.id.tab5_btn);
-
+        tab6_btn = (Button)findViewById(R.id.tab6_btn);
+        tab7_btn = (Button)findViewById(R.id.tab7_btn);
+        tab8_btn = (Button)findViewById(R.id.tab8_btn);
+        tab9_btn = (Button)findViewById(R.id.tab9_btn);
+        tab10_btn = (Button)findViewById(R.id.tab10_btn);
 
         findViewById(R.id.top_left_btn).setOnClickListener(btnListener);
         findViewById(R.id.top_right_btn).setOnClickListener(btnListener);
@@ -64,16 +67,21 @@ public class SchoolInfoActivity extends ActivityEx {
         findViewById(R.id.tab3_btn).setOnClickListener(btnListener);
         findViewById(R.id.tab4_btn).setOnClickListener(btnListener);
         findViewById(R.id.tab5_btn).setOnClickListener(btnListener);
+        findViewById(R.id.tab6_btn).setOnClickListener(btnListener);
+        findViewById(R.id.tab7_btn).setOnClickListener(btnListener);
+        findViewById(R.id.tab8_btn).setOnClickListener(btnListener);
+        findViewById(R.id.tab9_btn).setOnClickListener(btnListener);
+        findViewById(R.id.tab10_btn).setOnClickListener(btnListener);
 
     }
     private void postSelAPI(String CATEGORY_1){
         customProgressPop();
         arr = new ArrayList<SchoolInfoObj>();
 
-        map.put("url", DEFINE.SERVER_URL + "BOARD_SELECT.php");
+        map.put("url", DEFINE.SERVER_URL + "CHINALIFE_SELECT.php");
         map.put("TAG", ""+tab_position);
         map.put("SELF_ID", Check_Preferences.getAppPreferences(getApplicationContext() ,"KEY_INDEX"));
-        map.put("PARENTS_FLAG", "0");
+        map.put("PARENTS_FLAG", "2");
         map.put("CATEGORY_1", CATEGORY_1);
 
 
@@ -90,20 +98,18 @@ public class SchoolInfoActivity extends ActivityEx {
                     break;
                 case R.id.top_right_btn:
                     Log.e("SKY"  , "--top_right_btn--");
-                    Intent intent = new Intent(SchoolInfoActivity.this, SchoolInfoWriteActivity.class);
+                    Intent intent = new Intent(ChinaLifeActivity.this, ChinaLifeWriteActivity.class);
                     startActivity(intent);
                     break;
                 case R.id.tab1_btn:
                     Log.e("SKY"  , "--tab1_btn--");
                     tab_position = 0;
                     postSelAPI("");
-                    //Toast.makeText(SchoolInfoActivity.this, "준비중..", Toast.LENGTH_SHORT).show();
                     break;
                 case R.id.tab2_btn:
                     Log.e("SKY"  , "--tab2_btn--");
                     tab_position = 1;
                     postSelAPI("");
-                    //Toast.makeText(SchoolInfoActivity.this, "준비중..", Toast.LENGTH_SHORT).show();
                     break;
                 case R.id.tab3_btn:
                     Log.e("SKY"  , "--tab3_btn--");
@@ -115,12 +121,50 @@ public class SchoolInfoActivity extends ActivityEx {
                     Log.e("SKY"  , "--tab4_btn--");
                     tab_position = 3;
                     CATEGORY_1 = tab4_btn.getText().toString();
+
                     postSelAPI(CATEGORY_1);
                     break;
                 case R.id.tab5_btn:
                     Log.e("SKY"  , "--tab5_btn--");
                     tab_position = 4;
                     CATEGORY_1 = tab5_btn.getText().toString();
+
+                    postSelAPI(CATEGORY_1);
+                    break;
+
+                case R.id.tab6_btn:
+                    Log.e("SKY"  , "--tab6_btn--");
+                    tab_position = 5;
+                    CATEGORY_1 = tab6_btn.getText().toString();
+
+                    postSelAPI(CATEGORY_1);
+                    break;
+                case R.id.tab7_btn:
+                    Log.e("SKY"  , "--tab7_btn--");
+                    tab_position = 6;
+                    CATEGORY_1 = tab7_btn.getText().toString();
+
+                    postSelAPI(CATEGORY_1);
+                    break;
+                case R.id.tab8_btn:
+                    Log.e("SKY"  , "--tab8_btn--");
+                    tab_position = 7;
+                    CATEGORY_1 = tab8_btn.getText().toString();
+
+                    postSelAPI(CATEGORY_1);
+                    break;
+                case R.id.tab9_btn:
+                    Log.e("SKY"  , "--tab9_btn--");
+                    tab_position = 8;
+                    CATEGORY_1 = tab9_btn.getText().toString();
+
+                    postSelAPI(CATEGORY_1);
+                    break;
+                case R.id.tab10_btn:
+                    Log.e("SKY"  , "--tab10_btn--");
+                    tab_position = 9;
+                    CATEGORY_1 = tab10_btn.getText().toString();
+
                     postSelAPI(CATEGORY_1);
                     break;
             }
@@ -178,7 +222,7 @@ public class SchoolInfoActivity extends ActivityEx {
                     }
                 }
 
-                m_Adapter = new SchoolInfo_Adapter(SchoolInfoActivity.this ,arr, mAfterAccum);
+                m_Adapter = new SchoolInfo_Adapter(ChinaLifeActivity.this ,arr, mAfterAccum);
                 // Xml에서 추가한 ListView 연결
                 list_number.setOnItemClickListener(mItemClickListener);
                 // ListView에 어댑터 연결
@@ -190,7 +234,7 @@ public class SchoolInfoActivity extends ActivityEx {
     AdapterView.OnItemClickListener mItemClickListener = new AdapterView.OnItemClickListener() {
         public void onItemClick(AdapterView parent, View view, int position,
                                 long id) {
-            Intent board = new Intent(getApplicationContext(), SchoolInfoDetailActivity.class);
+            Intent board = new Intent(getApplicationContext(), ChinaLifeDetailActivity.class);
             board.putExtra("Object", arr.get(position));
             startActivity(board);
         }

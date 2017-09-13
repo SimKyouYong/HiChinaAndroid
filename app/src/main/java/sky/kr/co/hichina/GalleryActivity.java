@@ -69,6 +69,16 @@ public class GalleryActivity extends Activity implements OnScrollListener, GridV
                     }
                     Collections.sort(PersonStudyWriteActivity.mThumbImageInfoList_copy, new NoAscCompare());
                     finish();
+                }else if(tag.equals("2")){
+                    ChinaLifeWriteActivity.pic_flag = true;
+                    ChinaLifeWriteActivity.mThumbImageInfoList_copy.clear();
+                    for (int i = 0; i < mThumbImageInfoList.size(); i++) {
+                        if (mThumbImageInfoList.get(i).getIndex() != 999) {
+                            ChinaLifeWriteActivity.mThumbImageInfoList_copy.add(mThumbImageInfoList.get(i));
+                        }
+                    }
+                    Collections.sort(ChinaLifeWriteActivity.mThumbImageInfoList_copy, new NoAscCompare());
+                    finish();
                 }
 
 				break;

@@ -47,18 +47,19 @@ public class MainActivity extends ActivityEx {
                     break;
                 case R.id.main_btn1:        //중국생활
                     Log.e("SKY"  , "--main_btn1--");
-                    Toast.makeText(MainActivity.this, "준비중..", Toast.LENGTH_SHORT).show();
+                    Intent intent3 = new Intent(MainActivity.this, ChinaLifeActivity.class);
+                    startActivity(intent3);
                     break;
                 case R.id.main_btn2:        //사고팔기
                     Log.e("SKY"  , "--main_btn2--");
                     Toast.makeText(MainActivity.this, "준비중..", Toast.LENGTH_SHORT).show();
                     break;
-                case R.id.main_btn3:        //개인교습
+                case R.id.main_btn3:        //개인교습(ok)
                     Log.e("SKY"  , "--main_btn3--");
                     Intent intent2 = new Intent(MainActivity.this, PersonStudyActivity.class);
                     startActivity(intent2);
                     break;
-                case R.id.main_btn4:        //학교생활정보
+                case R.id.main_btn4:        //학교생활정보(ok)
                     Log.e("SKY"  , "--main_btn4--");
                     Intent intent = new Intent(MainActivity.this, SchoolInfoActivity.class);
                     startActivity(intent);

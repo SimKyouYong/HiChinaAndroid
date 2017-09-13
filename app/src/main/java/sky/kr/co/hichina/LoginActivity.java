@@ -91,6 +91,7 @@ public class LoginActivity extends ActivityEx {
                     Check_Preferences.setAppPreferences(LoginActivity.this , "MEMBER_EMAIL" , val[4]);
                     Check_Preferences.setAppPreferences(LoginActivity.this , "MEMBER_JOB"   , val[5]);
                     startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                    finish();
                 }else{
                     Toast.makeText(getApplicationContext() , "아이디 혹은 비밀번호를 입력해주세요." , Toast.LENGTH_SHORT).show();
 
