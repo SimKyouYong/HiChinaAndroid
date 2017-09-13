@@ -25,7 +25,7 @@ import sky.kr.co.hichina.common.DEFINE;
 import sky.kr.co.hichina.obj.PersonStudyObj;
 
 
-public class PersonStudyActivity extends ActivityEx {
+public class BuySellActivity extends ActivityEx {
     private AccumThread mThread;
     private Map<String, String> map = new HashMap<String, String>();
     private ListView list_number;
@@ -34,9 +34,9 @@ public class PersonStudyActivity extends ActivityEx {
     private String [][] Object_Array;
     private PersonStudy_Adapter m_Adapter;
 
-    private String CATEGORY1="" ,CATEGORY2="" ,CATEGORY3="" ;
+    private String CATEGORY1="" ,CATEGORY2="" ,CATEGORY3="",CATEGORY4="" ;
 
-    private Button tab1_btn ,tab2_btn ,tab3_btn;
+    private Button tab1_btn ,tab2_btn ,tab3_btn, tab4_btn;
     String val [] = {"KEY_INDEX","PARENT_KEYINDEX", "BODY", "TITLE", "SELF_ID", "GOOD_EA",
             "COMMENT_EA" ,"DATE", "IMG_1" , "IMG_2", "IMG_3",
             "IMG_4","IMG_5","IMG_6","IMG_7","IMG_8",
@@ -44,18 +44,19 @@ public class PersonStudyActivity extends ActivityEx {
             "CATEGORY_1" ,"CATEGORY_2" ,"CATEGORY_3","CATEGORY_4" , "GOOD_FLAG","COUNT"};
     @Override
     public void onResume() {
-        postSelAPI(CATEGORY1,CATEGORY2,CATEGORY3);
+        postSelAPI(CATEGORY1,CATEGORY2,CATEGORY3,CATEGORY4);
         super.onResume();
     }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_personstudy);
+        setContentView(R.layout.activity_buysell);
 
         list_number = (ListView)findViewById(R.id.list_number);
         tab1_btn = (Button)findViewById(R.id.tab1_btn);
         tab2_btn = (Button)findViewById(R.id.tab2_btn);
         tab3_btn = (Button)findViewById(R.id.tab3_btn);
+        tab4_btn = (Button)findViewById(R.id.tab4_btn);
 
 
 
@@ -63,10 +64,11 @@ public class PersonStudyActivity extends ActivityEx {
         findViewById(R.id.tab1_btn).setOnClickListener(btnListener);
         findViewById(R.id.tab2_btn).setOnClickListener(btnListener);
         findViewById(R.id.tab3_btn).setOnClickListener(btnListener);
-        tab1_btn.setText("종류:"+"모두");
-        tab2_btn.setText("경력:"+"모두");
-        tab3_btn.setText("전공유무:"+"모두");
-
+        findViewById(R.id.tab4_btn).setOnClickListener(btnListener);
+        tab1_btn.setText("항목선택:"+"모두");
+        tab2_btn.setText("보증서:"+"모두");
+        tab3_btn.setText("청결상태:"+"모두");
+        tab4_btn.setText("비용선택:"+"모두");
 
     }
     View.OnClickListener btnListener = new View.OnClickListener() {
@@ -74,15 +76,15 @@ public class PersonStudyActivity extends ActivityEx {
             switch (v.getId()) {
                 case R.id.tab1_btn:
                     Log.e("SKY"  , "--tab1_btn--");
-                    final CharSequence[] items = {"개인과외", "그룹과외"};
+                    final CharSequence[] items = {"주방가전", "주방용품", "거실가구", "가습기/선풍기", "수납함", "세탁관련용품", "의류/가방", "화장품", "기타"};
 
-                    AlertDialog.Builder builder = new AlertDialog.Builder(PersonStudyActivity.this);
+                    AlertDialog.Builder builder = new AlertDialog.Builder(BuySellActivity.this);
                     builder.setTitle("선택하세요")
                             .setItems(items, new DialogInterface.OnClickListener(){    // 목록 클릭시 설정
                                 public void onClick(DialogInterface dialog, int index){
                                     CATEGORY1 = (String) items[index];
-                                    tab1_btn.setText("종류:"+CATEGORY1);
-                                    postSelAPI(CATEGORY1,CATEGORY2,CATEGORY3);
+                                    tab1_btn.setText("항목선택:"+CATEGORY1);
+                                    postSelAPI(CATEGORY1,CATEGORY2,CATEGORY3,CATEGORY4);
                                 }
                             });
 
@@ -91,14 +93,14 @@ public class PersonStudyActivity extends ActivityEx {
                     break;
                 case R.id.tab2_btn:
                     Log.e("SKY"  , "--tab2_btn--");
-                    final CharSequence[] items2 = {"[1년이하]", "[1년 - 2년]", "[2년 - 3년]", "[3년 - 5년]", "[5년 - 7년]", "[7년이상]"};
-                    AlertDialog.Builder builder2 = new AlertDialog.Builder(PersonStudyActivity.this);
+                    final CharSequence[] items2 = {"보증서/유", "보증서/무"};
+                    AlertDialog.Builder builder2 = new AlertDialog.Builder(BuySellActivity.this);
                     builder2.setTitle("선택하세요")
                             .setItems(items2, new DialogInterface.OnClickListener(){    // 목록 클릭시 설정
                                 public void onClick(DialogInterface dialog, int index){
                                     CATEGORY2 = (String) items2[index];
-                                    tab2_btn.setText("경력:"+CATEGORY2);
-                                    postSelAPI(CATEGORY1,CATEGORY2,CATEGORY3);
+                                    tab2_btn.setText("보증서:"+CATEGORY2);
+                                    postSelAPI(CATEGORY1,CATEGORY2,CATEGORY3,CATEGORY4);
                                 }
                             });
 
@@ -107,19 +109,35 @@ public class PersonStudyActivity extends ActivityEx {
                     break;
                 case R.id.tab3_btn:
                     Log.e("SKY"  , "--tab3_btn--");
-                    final CharSequence[] items3 = {"전공자", "비전공자"};
-                    AlertDialog.Builder builder3 = new AlertDialog.Builder(PersonStudyActivity.this);
+                    final CharSequence[] items3 = {"A", "B", "C", "D", "E"};
+                    AlertDialog.Builder builder3 = new AlertDialog.Builder(BuySellActivity.this);
                     builder3.setTitle("선택하세요")
                             .setItems(items3, new DialogInterface.OnClickListener(){    // 목록 클릭시 설정
                                 public void onClick(DialogInterface dialog, int index){
                                     CATEGORY3 = (String) items3[index];
-                                    tab3_btn.setText("전공유무:"+CATEGORY3);
-                                    postSelAPI(CATEGORY1,CATEGORY2,CATEGORY3);
+                                    tab3_btn.setText("청결상태:"+CATEGORY3);
+                                    postSelAPI(CATEGORY1,CATEGORY2,CATEGORY3,CATEGORY4);
                                 }
                             });
 
                     AlertDialog dialog3 = builder3.create();    // 알림창 객체 생성
                     dialog3.show();    // 알림창 띄우기
+                    break;
+                case R.id.tab4_btn:
+                    Log.e("SKY"  , "--tab4_btn--");
+                    final CharSequence[] items4 = {"50元", "60元", "70元", "80元", "90元", "100元"};
+                    AlertDialog.Builder builder4 = new AlertDialog.Builder(BuySellActivity.this);
+                    builder4.setTitle("선택하세요")
+                            .setItems(items4, new DialogInterface.OnClickListener(){    // 목록 클릭시 설정
+                                public void onClick(DialogInterface dialog, int index){
+                                    CATEGORY4 = (String) items4[index];
+                                    tab4_btn.setText("비용선택:"+CATEGORY4);
+                                    postSelAPI(CATEGORY1,CATEGORY2,CATEGORY3,CATEGORY4);
+                                }
+                            });
+
+                    AlertDialog dialog4 = builder4.create();    // 알림창 객체 생성
+                    dialog4.show();    // 알림창 띄우기
                     break;
                 case R.id.top_left_btn:
                     Log.e("SKY"  , "--top_left_btn--");
@@ -127,23 +145,24 @@ public class PersonStudyActivity extends ActivityEx {
                     break;
                 case R.id.top_right_btn:
                     Log.e("SKY"  , "--top_right_btn--");
-                    Intent intent = new Intent(PersonStudyActivity.this, PersonStudyWriteActivity.class);
+                    Intent intent = new Intent(BuySellActivity.this, BuySellWriteActivity.class);
                     startActivity(intent);
                     break;
             }
         }
     };
-    private void postSelAPI(String category_1 , String category_2 , String category_3){
+    private void postSelAPI(String category_1 , String category_2 , String category_3, String category_4){
         customProgressPop();
         arr = new ArrayList<PersonStudyObj>();
         map.clear();
-        map.put("url", DEFINE.SERVER_URL + "POERSON_STUDY_SELECT.php");
+        map.put("url", DEFINE.SERVER_URL + "BUYSELL_SELECT.php");
         map.put("SELF_ID", Check_Preferences.getAppPreferences(getApplicationContext() ,"KEY_INDEX"));
-        map.put("PARENTS_FLAG", "1");
+        map.put("PARENTS_FLAG", "3");
 
         map.put("CATEGORY_1", category_1);
         map.put("CATEGORY_2", category_2);
         map.put("CATEGORY_3", category_3);
+        map.put("CATEGORY_4", category_4);
 
         mThread = new AccumThread(this, mAfterAccum , map , 1 , 0 , val);
         mThread.start();		//스레드 시작!!
@@ -202,7 +221,7 @@ public class PersonStudyActivity extends ActivityEx {
                     }
                 }
 
-                m_Adapter = new PersonStudy_Adapter(PersonStudyActivity.this ,arr, mAfterAccum);
+                m_Adapter = new PersonStudy_Adapter(BuySellActivity.this ,arr, mAfterAccum);
                 // Xml에서 추가한 ListView 연결
                 list_number.setOnItemClickListener(mItemClickListener);
                 // ListView에 어댑터 연결
@@ -214,7 +233,7 @@ public class PersonStudyActivity extends ActivityEx {
     AdapterView.OnItemClickListener mItemClickListener = new AdapterView.OnItemClickListener() {
         public void onItemClick(AdapterView parent, View view, int position,
                                 long id) {
-            Intent board = new Intent(getApplicationContext(), PersonStudyDetailActivity.class);
+            Intent board = new Intent(getApplicationContext(), BuySellDetailActivity.class);
             board.putExtra("Object", arr.get(position));
             startActivity(board);
         }

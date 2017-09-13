@@ -52,7 +52,8 @@ public class MainActivity extends ActivityEx {
                     break;
                 case R.id.main_btn2:        //사고팔기
                     Log.e("SKY"  , "--main_btn2--");
-                    Toast.makeText(MainActivity.this, "준비중..", Toast.LENGTH_SHORT).show();
+                    Intent intent4 = new Intent(MainActivity.this, BuySellActivity.class);
+                    startActivity(intent4);
                     break;
                 case R.id.main_btn3:        //개인교습(ok)
                     Log.e("SKY"  , "--main_btn3--");
