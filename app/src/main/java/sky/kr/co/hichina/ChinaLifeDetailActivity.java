@@ -125,7 +125,7 @@ public class ChinaLifeDetailActivity extends ActivityEx {
                     Log.e("SKY"  , "--top_right_btn--");
                     customProgressPop();
                     map.clear();
-                    map.put("url", DEFINE.SERVER_URL + "BOARD_GOOD.php");
+                    map.put("url", DEFINE.SERVER_URL + "CHINALIFE_GOOD.php");
                     String Flag = "";
                     if (obj.getGOOD_FLAG().trim().equals("TRUE")){
                         Flag = "OFF";
