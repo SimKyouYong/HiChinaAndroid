@@ -63,7 +63,7 @@ public class PersonStudyComment_Adapter extends BaseAdapter {
 			vh = (ViewHolder) convertView.getTag();
 		}
         vh.name_tv.setText(board.getSELF_ID() );
-        vh.body_tv.setText(board.getBODY());
+        vh.body_tv.setText(board.getTITLE());
 		vh.date_tv.setText(board.getDATE());
 
         return convertView;
