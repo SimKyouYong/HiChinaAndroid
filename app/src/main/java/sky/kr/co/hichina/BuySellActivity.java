@@ -18,11 +18,11 @@ import java.util.HashMap;
 import java.util.Map;
 
 import co.kr.sky.AccumThread;
-import sky.kr.co.hichina.adapter.PersonStudy_Adapter;
+import sky.kr.co.hichina.adapter.BuySell_Adapter;
 import sky.kr.co.hichina.common.ActivityEx;
 import sky.kr.co.hichina.common.Check_Preferences;
 import sky.kr.co.hichina.common.DEFINE;
-import sky.kr.co.hichina.obj.PersonStudyObj;
+import sky.kr.co.hichina.obj.BuySellObj;
 
 
 public class BuySellActivity extends ActivityEx {
@@ -30,9 +30,9 @@ public class BuySellActivity extends ActivityEx {
     private Map<String, String> map = new HashMap<String, String>();
     private ListView list_number;
     private EditText id_edit , email_edit;
-    private ArrayList<PersonStudyObj> arr;
+    private ArrayList<BuySellObj> arr;
     private String [][] Object_Array;
-    private PersonStudy_Adapter m_Adapter;
+    private BuySell_Adapter m_Adapter;
 
     private String CATEGORY1="" ,CATEGORY2="" ,CATEGORY3="",CATEGORY4="" ;
 
@@ -153,7 +153,7 @@ public class BuySellActivity extends ActivityEx {
     };
     private void postSelAPI(String category_1 , String category_2 , String category_3, String category_4){
         customProgressPop();
-        arr = new ArrayList<PersonStudyObj>();
+        arr = new ArrayList<BuySellObj>();
         map.clear();
         map.put("url", DEFINE.SERVER_URL + "BUYSELL_SELECT.php");
         map.put("SELF_ID", Check_Preferences.getAppPreferences(getApplicationContext() ,"KEY_INDEX"));
@@ -211,7 +211,7 @@ public class BuySellActivity extends ActivityEx {
                         if (Object_Array[17][i].length() != 0)
                             count++;
 
-                        arr.add(new PersonStudyObj(Object_Array[0][i],Object_Array[1][i], Object_Array[2][i], Object_Array[3][i],Object_Array[4][i],
+                        arr.add(new BuySellObj(Object_Array[0][i],Object_Array[1][i], Object_Array[2][i], Object_Array[3][i],Object_Array[4][i],
                                 Object_Array[5][i], Object_Array[6][i], Object_Array[7][i],Object_Array[8][i],Object_Array[9][i],
                                 Object_Array[10][i], Object_Array[11][i],Object_Array[12][i], Object_Array[13][i], Object_Array[14][i],
                                 Object_Array[15][i],Object_Array[16][i], Object_Array[17][i] , Object_Array[18][i], Object_Array[19][i]
@@ -221,7 +221,7 @@ public class BuySellActivity extends ActivityEx {
                     }
                 }
 
-                m_Adapter = new PersonStudy_Adapter(BuySellActivity.this ,arr, mAfterAccum);
+                m_Adapter = new BuySell_Adapter(BuySellActivity.this ,arr, mAfterAccum);
                 // Xml에서 추가한 ListView 연결
                 list_number.setOnItemClickListener(mItemClickListener);
                 // ListView에 어댑터 연결
