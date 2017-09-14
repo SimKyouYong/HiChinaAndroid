@@ -32,8 +32,8 @@ public class LoginActivity extends ActivityEx {
         id_edit = (EditText)findViewById(R.id.id_edit);
         pw_edit = (EditText)findViewById(R.id.pw_edit);
 
-        id_edit.setText("snap40");
-        pw_edit.setText("rbdyd3174");
+//        id_edit.setText("snap40");
+//        pw_edit.setText("rbdyd3174");
         findViewById(R.id.pw_find_btn).setOnClickListener(btnListener);
         findViewById(R.id.login_btn).setOnClickListener(btnListener);
         findViewById(R.id.join_btn).setOnClickListener(btnListener);

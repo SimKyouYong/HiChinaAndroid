@@ -105,9 +105,9 @@ public class PersonStudyWriteActivity extends ActivityEx {
         category3_btn = (Button)findViewById(R.id.category3_btn);
         category4_btn = (Button)findViewById(R.id.category4_btn);
 
-        title_edit.setText("title 111");
-        //title_edit.setVisibility(View.GONE);
-        body_edit.setText("body 111222");
+//        title_edit.setText("title 111");
+//        //title_edit.setVisibility(View.GONE);
+//        body_edit.setText("body 111222");
 
         findViewById(R.id.top_left_btn).setOnClickListener(btnListener);
         findViewById(R.id.category1_btn).setOnClickListener(btnListener);

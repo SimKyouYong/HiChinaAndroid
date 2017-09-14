@@ -101,7 +101,7 @@ public class SchoolInfoWriteActivity extends ActivityEx {
 
 //        title_edit.setText("title 111");
         title_edit.setVisibility(View.GONE);
-        body_edit.setText("title 111222");
+        //body_edit.setText("title 111222");
 
         findViewById(R.id.top_left_btn).setOnClickListener(btnListener);
         findViewById(R.id.category_btn).setOnClickListener(btnListener);

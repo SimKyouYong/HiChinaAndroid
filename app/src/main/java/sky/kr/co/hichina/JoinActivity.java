@@ -38,9 +38,9 @@ public class JoinActivity extends ActivityEx {
         email_edit = (EditText)findViewById(R.id.email_edit);
 
 
-        id_edit.setText("snap40");
-        pw_edit.setText("rbdyd3174");
-        email_edit.setText("snap0425@gmail.com");
+//        id_edit.setText("snap40");
+//        pw_edit.setText("rbdyd3174");
+//        email_edit.setText("snap0425@gmail.com");
 
         findViewById(R.id.job_btn).setOnClickListener(btnListener);
         findViewById(R.id.join_btn).setOnClickListener(btnListener);
