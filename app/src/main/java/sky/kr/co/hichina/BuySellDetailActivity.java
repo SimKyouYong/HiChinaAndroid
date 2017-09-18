@@ -24,7 +24,6 @@ import java.util.Map;
 
 import co.kr.sky.AccumThread;
 import sky.kr.co.hichina.adapter.BuySellComment_Adapter;
-import sky.kr.co.hichina.adapter.PersonStudyComment_Adapter;
 import sky.kr.co.hichina.common.ActivityEx;
 import sky.kr.co.hichina.common.Check_Preferences;
 import sky.kr.co.hichina.common.DEFINE;
@@ -147,7 +146,7 @@ public class BuySellDetailActivity extends ActivityEx {
                         Flag = "ON";
                     }
                     map.put("GOOD", ""+Flag);           //ON 좋아요  , OFF 좋아요 해제
-                    map.put("PARENTS_FLAG", "1");
+                    map.put("PARENTS_FLAG", "3");
                     map.put("PARENT_KEYINDEX", ""+obj.getKEY_INDEX());
 
                     map.put("SELF_ID_KEY_INDEX",Check_Preferences.getAppPreferences(getApplicationContext() ,"KEY_INDEX"));
@@ -272,7 +271,7 @@ public class BuySellDetailActivity extends ActivityEx {
         map.put("url", DEFINE.SERVER_URL + "BUYSELL_SELECT_IN.php");
         map.put("KEY_INDEX", ""+obj.getKEY_INDEX());
         map.put("SELF_ID", Check_Preferences.getAppPreferences(getApplicationContext() ,"KEY_INDEX"));
-        map.put("PARENTS_FLAG", "1");
+        map.put("PARENTS_FLAG", "3");
         mThread = new AccumThread(this, mAfterAccum , map , 1 , 2 , val);
         mThread.start();		//스레드 시작!!
     }
