@@ -4,48 +4,191 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:orientation="vertical"
+    android:background="#d3d3d3"
     android:layout_height="match_parent"
     >
+    <RelativeLayout
+        android:id="@+id/topview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:background="#ff0000">
+
+        <Button
+            android:id="@+id/top_left_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:background="#00000000"
+            android:text="뒤로가기"
+            android:textColor="#ffffff"
+            android:textSize="20dp"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_margin="10dp"
+            android:text="China"
+            android:textSize="20dp"
+            android:visibility="gone"/>
+
+        <Button
+            android:id="@+id/top_right_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            />
+    </RelativeLayout>
 
     <LinearLayout
-        android:id="@+id/TopView"
-        android:layout_centerInParent="true"
         android:layout_width="match_parent"
-        android:layout_margin="20dp"
+        android:id="@+id/centerview"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/topview"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:background="#ffffff"
+        android:layout_marginTop="20dp"
         android:orientation="vertical">
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="아이디를 입력해주세요"
-            android:id="@+id/id_edit"/>
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="이메일를 입력해주세요"
-            android:id="@+id/email_edit"/>
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="비밀번호를 입력해주세요"
-            android:inputType="textPassword"
-            android:background="#00000000"
-            android:id="@+id/pw_edit"/>
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="직업"
-            android:layout_marginTop="5dp"
-            android:layout_marginBottom="5dp"
-            android:id="@+id/job_btn"/>
 
-        <Button
+        <TextView
+            android:text="ID"
+            android:layout_width="match_parent"
+            android:textSize="20dp"
+            android:padding="10dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/my_id"/>
+        <TextView
+            android:text="ID"
+            android:padding="10dp"
+            android:textSize="20dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="회원가입"
-            android:id="@+id/join_btn"/>
+            android:id="@+id/my_nickname"/>
 
     </LinearLayout>
 
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/centerview"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:background="#ffffff"
+        android:layout_marginTop="20dp"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:id="@+id/btn1_btn"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+
+            <TextView
+                android:text="내가 쓴글"
+                android:layout_width="wrap_content"
+                android:textSize="20dp"
+                android:padding="10dp"
+                android:layout_alignParentLeft="true"
+                android:layout_height="wrap_content"
+                android:id="@+id/txt1"/>
+
+
+            <TextView
+                android:text=">"
+                android:layout_width="wrap_content"
+                android:textSize="20dp"
+                android:layout_alignParentRight="true"
+                android:padding="10dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/txt1_btn"/>
+
+            <TextView
+                android:text="[0]"
+                android:textColor="#ff0000"
+                android:layout_width="wrap_content"
+                android:textSize="20dp"
+                android:padding="10dp"
+                android:layout_toLeftOf="@+id/txt1_btn"
+                android:layout_height="wrap_content"
+                android:id="@+id/txt1_right"/>
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:id="@+id/btn2_btn"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+
+            <TextView
+                android:text="관심 글"
+                android:layout_width="wrap_content"
+                android:textSize="20dp"
+                android:padding="10dp"
+                android:layout_alignParentLeft="true"
+                android:layout_height="wrap_content"
+                android:id="@+id/txt2"/>
+
+
+            <TextView
+                android:text=">"
+                android:layout_width="wrap_content"
+                android:textSize="20dp"
+                android:layout_alignParentRight="true"
+                android:padding="10dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/txt2_btn"/>
+
+            <TextView
+                android:text="[0]"
+                android:textColor="#ff0000"
+                android:layout_width="wrap_content"
+                android:textSize="20dp"
+                android:padding="10dp"
+                android:layout_toLeftOf="@+id/txt2_btn"
+                android:layout_height="wrap_content"
+                android:id="@+id/txt2_right"/>
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:id="@+id/btn3_btn"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+
+            <TextView
+                android:text="댓글"
+                android:layout_width="wrap_content"
+                android:textSize="20dp"
+                android:padding="10dp"
+                android:layout_alignParentLeft="true"
+                android:layout_height="wrap_content"
+                android:id="@+id/txt3"/>
+
+
+            <TextView
+                android:text=">"
+                android:layout_width="wrap_content"
+                android:textSize="20dp"
+                android:layout_alignParentRight="true"
+                android:padding="10dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/txt3_btn"/>
+
+            <TextView
+                android:text="[0]"
+                android:textColor="#ff0000"
+                android:layout_width="wrap_content"
+                android:textSize="20dp"
+                android:padding="10dp"
+                android:layout_toLeftOf="@+id/txt3_btn"
+                android:layout_height="wrap_content"
+                android:id="@+id/txt3_right"/>
+        </RelativeLayout>
+    </LinearLayout>
 
 </RelativeLayout>
