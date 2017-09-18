@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -43,7 +42,8 @@ public class MainActivity extends ActivityEx {
 
                 case R.id.top_right_btn:
                     Log.e("SKY"  , "--top_right_btn--");
-                    Toast.makeText(MainActivity.this, "준비중..", Toast.LENGTH_SHORT).show();
+                    Intent intent5 = new Intent(MainActivity.this, MyPageActivity.class);
+                    startActivity(intent5);
                     break;
                 case R.id.main_btn1:        //중국생활
                     Log.e("SKY"  , "--main_btn1--");
