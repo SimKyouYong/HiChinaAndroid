@@ -32,6 +32,12 @@ public class LoginActivity extends ActivityEx {
         id_edit = (EditText)findViewById(R.id.id_edit);
         pw_edit = (EditText)findViewById(R.id.pw_edit);
 
+
+
+        id_edit.setText("" + Check_Preferences.getAppPreferences(this , "MYID"));
+        pw_edit.setText("" + Check_Preferences.getAppPreferences(this , "MYPW"));
+
+
 //        id_edit.setText("snap40");
 //        pw_edit.setText("rbdyd3174");
         findViewById(R.id.pw_find_btn).setOnClickListener(btnListener);
@@ -84,6 +90,9 @@ public class LoginActivity extends ActivityEx {
                 String val[] = res.split(",");
                 if (val[0].equals("true")){
                     //로그인 성공
+
+                    Check_Preferences.setAppPreferences(LoginActivity.this , "MYID"    , id_edit.getText().toString());
+                    Check_Preferences.setAppPreferences(LoginActivity.this , "MYPW"    , pw_edit.getText().toString());
 
                     Check_Preferences.setAppPreferences(LoginActivity.this , "KEY_INDEX"    , val[1]);
                     Check_Preferences.setAppPreferences(LoginActivity.this , "MEMBER_ID"  , val[2]);
