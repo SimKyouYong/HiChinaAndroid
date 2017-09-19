@@ -27,7 +27,7 @@ public class MyPage2Activity extends ActivityEx {
 
     private String[] items1 = {"기타", "증명서발급", "학생사무실" , "학부모" , "수업/선생님" , "건의사항" , "실용중국어" ,"생활Tip", "동영상", "이슈" , "교통.물류" , "증권.은행" , "오락/음식" , "부동산","기타" , "주방가전", "주방용품", "거실가구", "가습기/선풍기", "수납함", "세탁관련용품", "의류/가방", "화장품", "기타"};
     private ListView list_number;
-
+    String val [] = {"CATEGORY_1"};
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,7 +38,8 @@ public class MyPage2Activity extends ActivityEx {
         map.put("url", DEFINE.SERVER_URL + "MYPAGE2_SELECT.php");
         map.put("MEMBER_KEY_INDEX", Check_Preferences.getAppPreferences(this , "KEY_INDEX"));
         //스레드 생성
-        mThread = new AccumThread(this , mAfterAccum , map , 1 , 0 , null);
+        mThread = new AccumThread(this, mAfterAccum , map , 1 , 0 , val);
+
         mThread.start();		//스레드 시작!!
 
         list_number = (ListView)findViewById(R.id.list_number);
@@ -65,10 +66,23 @@ public class MyPage2Activity extends ActivityEx {
                 for (int i = 0; i < (Object_Array[0].length); i++){
                     if (Object_Array[0][i] != null) {
 
-                        //for (int j = 0; j < arr.size(); j ++){
-                        //    if (arr.get(j).)
-                        //}
-                        arr.add(new Mypag1eObj(Object_Array[0][i],Object_Array[1][i]));
+                        Boolean flag = false;
+                        int position_ii = 0;
+                        for (int j = 0; j < arr.size(); j ++){
+                            if (arr.get(j).equals(Object_Array[0][i])){
+                                flag = true;
+                                position_ii = j;
+                            }
+                        }
+                        if (!flag){
+                            //new
+                            arr.add(new Mypag1eObj(Object_Array[0][i],"1"));
+                        }else{
+                            //count++
+                            int a = Integer.parseInt(arr.get(position_ii).getCOUNT());
+                            arr.get(position_ii).setCOUNT(""+(a+1));
+                        }
+
                     }
                 }
                 m_Adapter = new Mypage2_Adapter(MyPage2Activity.this ,arr, mAfterAccum);

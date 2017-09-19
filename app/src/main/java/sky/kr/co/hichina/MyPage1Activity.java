@@ -55,7 +55,7 @@ public class MyPage1Activity extends ActivityEx {
                 String val[] = res.split(",");
 
                 for (int i= 0; i < val.length; i++){
-                    if (!val[i].equals("0")){
+                    if (val[i].equals("1")){
                         //add
                         arr.add(new Mypag1eObj(items1[i] , val[i]));
                     }
