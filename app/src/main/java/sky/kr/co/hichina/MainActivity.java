@@ -1,5 +1,7 @@
 package sky.kr.co.hichina;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -14,7 +16,7 @@ import sky.kr.co.hichina.common.ActivityEx;
 
 public class MainActivity extends ActivityEx {
 
-    private Button top_right_btn , main_btn1 , main_btn2 , main_btn3 , main_btn4;
+    private Button top_right_btn , main_btn1 , main_btn2 , main_btn3 , main_btn4 , location;
     private AccumThread mThread;
     private Map<String, String> map = new HashMap<String, String>();
 
@@ -28,8 +30,11 @@ public class MainActivity extends ActivityEx {
         main_btn2 = (Button)findViewById(R.id.main_btn2);
         main_btn3 = (Button)findViewById(R.id.main_btn3);
         main_btn4 = (Button)findViewById(R.id.main_btn4);
+        location = (Button)findViewById(R.id.location);
 //
         findViewById(R.id.top_right_btn).setOnClickListener(btnListener);
+
+        findViewById(R.id.location).setOnClickListener(btnListener);
         findViewById(R.id.main_btn1).setOnClickListener(btnListener);
         findViewById(R.id.main_btn2).setOnClickListener(btnListener);
         findViewById(R.id.main_btn3).setOnClickListener(btnListener);
@@ -40,6 +45,21 @@ public class MainActivity extends ActivityEx {
         public void onClick(View v) {
             switch (v.getId()) {
 
+                case R.id.location:
+                    Log.e("SKY"  , "--location--");
+                    final CharSequence[] items = {"지역","북경", "상", "천진", "선", "서안", "광저우"};
+
+                    AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+                    builder.setTitle("선택하세요")
+                            .setItems(items, new DialogInterface.OnClickListener(){    // 목록 클릭시 설정
+                                public void onClick(DialogInterface dialog, int index){
+                                    location.setText((String) items[index]);
+                                }
+                            });
+
+                    AlertDialog dialog = builder.create();    // 알림창 객체 생성
+                    dialog.show();    // 알림창 띄우기
+                    break;
                 case R.id.top_right_btn:
                     Log.e("SKY"  , "--top_right_btn--");
                     Intent intent5 = new Intent(MainActivity.this, MyPageActivity.class);

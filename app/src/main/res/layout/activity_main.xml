@@ -43,9 +43,8 @@
             android:id="@+id/location"
             android:layout_width="match_parent"
             android:background="#00000000"
-            android:visibility="gone"
             android:layout_height="wrap_content"
-            android:text="선택"/>
+            android:text="지역"/>
 
         <Button
             android:id="@+id/main_btn1"
